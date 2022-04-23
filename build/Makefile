@@ -150,6 +150,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/BackPropagation.o: src/BackPropagation.cpp.o
+
+.PHONY : src/BackPropagation.o
+
+# target to build an object file
+src/BackPropagation.cpp.o:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.o
+.PHONY : src/BackPropagation.cpp.o
+
+src/BackPropagation.i: src/BackPropagation.cpp.i
+
+.PHONY : src/BackPropagation.i
+
+# target to preprocess a source file
+src/BackPropagation.cpp.i:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.i
+.PHONY : src/BackPropagation.cpp.i
+
+src/BackPropagation.s: src/BackPropagation.cpp.s
+
+.PHONY : src/BackPropagation.s
+
+# target to generate assembly for a file
+src/BackPropagation.cpp.s:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.s
+.PHONY : src/BackPropagation.cpp.s
+
 src/Network.o: src/Network.cpp.o
 
 .PHONY : src/Network.o
@@ -216,6 +243,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/BackPropagation.o"
+	@echo "... src/BackPropagation.i"
+	@echo "... src/BackPropagation.s"
 	@echo "... src/Network.o"
 	@echo "... src/Network.i"
 	@echo "... src/Network.s"

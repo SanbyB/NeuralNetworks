@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/NeuralNetwork.dir/main.cpp.o CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o  -o NeuralNetwork 
+/usr/bin/c++     CMakeFiles/NeuralNetwork.dir/main.cpp.o CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.o  -o NeuralNetwork 

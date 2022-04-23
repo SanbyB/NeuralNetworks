@@ -18,7 +18,7 @@ public:
 
 	/* takes activations of the previous layer,
 	weights of the neurons and their biases and
-	returns the activations of the current layer */
+	returns the weighted input (z) of the current layer */
 	static Eigen::MatrixXd propagate(Eigen::MatrixXd activations, Eigen::MatrixXd weights, Eigen::MatrixXd biases);
 
 	/* takes activations of the first layer

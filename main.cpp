@@ -1,26 +1,40 @@
 
 #include "include/Network.h"
 #include "include/Propagation.h"
+#include "include/BackPropagation.h"
 #include <iostream>
 
 int main(){
 
-	Network net = Network({3,5,4,2});
+
+	Network net = Network({5, 10, 12, 4});
 
 	for(int i = 0; i < net.numLayers - 1; i++){
-		std::cout << net.biases.at(i) << "\n";
-		std::cout << net.weights.at(i) << "\n";
+		std::cout << "net biases:\n" << net.biases.at(i) << "\n";
+		std::cout << "net weights:\n" << net.weights.at(i) << "\n";
 	}
 
-	Eigen::VectorXd a(3);
-	a << 1,2,3;
+	BackPropagation backPropagate = BackPropagation();
 
-	Eigen::MatrixXd a_prime(net.sizes.at(0), net.sizes.at(1));
 
-	a_prime =  Propagation::propagate(a, net);
+	Eigen::VectorXd input(5);
 
-	std::cout << a << "\n\n\n" << a_prime << "\n";
+	for(int i = 0; i < 5; i++){
+		input(i) = i + 1;
+	}
 
+	Eigen::VectorXd output(4);
+
+	for(int i = 0; i < 4; i++){
+		output(i) = i + 1;
+	}
+
+	Network newNet = backPropagate.backProp(net, input, output);
+
+	for(int i = 0; i < net.numLayers - 1; i++){
+		std::cout << "back biases:\n" << newNet.biases.at(i) << "\n";
+		std::cout << "back weights:\n" << newNet.weights.at(i) << "\n";
+	}
 
 	return 0;
 }

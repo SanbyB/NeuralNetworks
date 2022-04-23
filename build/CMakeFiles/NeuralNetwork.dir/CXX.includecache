@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+Eigen/Dense
+/home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
+Propagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
+Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+
 /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
 Eigen/Dense
 /home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
@@ -25,6 +33,14 @@ include/Network.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
 include/Propagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
+include/BackPropagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+iostream
+-
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/BackPropagation.cpp
+../include/BackPropagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
 iostream
 -
 

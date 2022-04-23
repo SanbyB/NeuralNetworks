@@ -43,6 +43,24 @@
 		"cstring": "cpp",
 		"complex": "cpp",
 		"functional": "cpp",
-		"iterator": "cpp"
+		"iterator": "cpp",
+		"ctime": "cpp",
+		"strstream": "cpp",
+		"chrono": "cpp",
+		"condition_variable": "cpp",
+		"list": "cpp",
+		"unordered_set": "cpp",
+		"map": "cpp",
+		"numeric": "cpp",
+		"random": "cpp",
+		"ratio": "cpp",
+		"set": "cpp",
+		"hash_map": "cpp",
+		"future": "cpp",
+		"iomanip": "cpp",
+		"mutex": "cpp",
+		"thread": "cpp",
+		"cfenv": "cpp",
+		"valarray": "cpp"
 	}
 }
