@@ -20,6 +20,8 @@ Eigen/Dense
 vector
 -
 
+/home/ben/Desktop/Learning/NeuralNetworks/include/OpenData.h
+
 /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
 Eigen/Dense
 /home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
@@ -35,6 +37,8 @@ include/Propagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
 include/BackPropagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+include/OpenData.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/OpenData.h
 iostream
 -
 
@@ -51,6 +55,14 @@ time.h
 -
 iostream
 -
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/OpenData.cpp
+iostream
+-
+fstream
+-
+../include/OpenData.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/OpenData.h
 
 /home/ben/Desktop/Learning/NeuralNetworks/src/Propagation.cpp
 ../include/Propagation.h

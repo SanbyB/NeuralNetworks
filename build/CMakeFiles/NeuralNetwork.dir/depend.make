@@ -3,6 +3,7 @@
 
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/BackPropagation.h
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/Network.h
+CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/OpenData.h
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/Propagation.h
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../main.cpp
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: /usr/local/include/eigen3/Eigen/Cholesky
@@ -649,6 +650,9 @@ CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o: /usr/local/include/eigen3/Eigen/
 CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o: /usr/local/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h
 CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o: /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o: /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+
+CMakeFiles/NeuralNetwork.dir/src/OpenData.cpp.o: ../include/OpenData.h
+CMakeFiles/NeuralNetwork.dir/src/OpenData.cpp.o: ../src/OpenData.cpp
 
 CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o: ../include/Network.h
 CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o: ../include/Propagation.h
