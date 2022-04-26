@@ -204,33 +204,6 @@ src/Network.cpp.s:
 	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/Network.cpp.s
 .PHONY : src/Network.cpp.s
 
-src/OpenData.o: src/OpenData.cpp.o
-
-.PHONY : src/OpenData.o
-
-# target to build an object file
-src/OpenData.cpp.o:
-	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/OpenData.cpp.o
-.PHONY : src/OpenData.cpp.o
-
-src/OpenData.i: src/OpenData.cpp.i
-
-.PHONY : src/OpenData.i
-
-# target to preprocess a source file
-src/OpenData.cpp.i:
-	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/OpenData.cpp.i
-.PHONY : src/OpenData.cpp.i
-
-src/OpenData.s: src/OpenData.cpp.s
-
-.PHONY : src/OpenData.s
-
-# target to generate assembly for a file
-src/OpenData.cpp.s:
-	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/OpenData.cpp.s
-.PHONY : src/OpenData.cpp.s
-
 src/Propagation.o: src/Propagation.cpp.o
 
 .PHONY : src/Propagation.o
@@ -276,9 +249,6 @@ help:
 	@echo "... src/Network.o"
 	@echo "... src/Network.i"
 	@echo "... src/Network.s"
-	@echo "... src/OpenData.o"
-	@echo "... src/OpenData.i"
-	@echo "... src/OpenData.s"
 	@echo "... src/Propagation.o"
 	@echo "... src/Propagation.i"
 	@echo "... src/Propagation.s"

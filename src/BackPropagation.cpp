@@ -54,10 +54,10 @@ Network BackPropagation::backProp(Network net, Eigen::VectorXd inputActivations,
 		nablaW.at(net.numLayers  - i) = delta * activations.at(net.numLayers - i).transpose();
 	}
 
-	for(int i = 0; i < net.numLayers - 1; i++){
-		std::cout << "nablaB: \n" << nablaB.at(i) << "\n";
-		std::cout << "nablaW: \n" << nablaW.at(i) << "\n";
-	}
+	// for(int i = 0; i < net.numLayers - 1; i++){
+	// 	std::cout << "nablaB: \n" << nablaB.at(i) << "\n";
+	// 	std::cout << "nablaW: \n" << nablaW.at(i) << "\n";
+	// }
 
 	// update weights and biases
 	for(int i = 0; i < net.numLayers - 1; i++){

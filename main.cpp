@@ -2,47 +2,91 @@
 #include "include/Network.h"
 #include "include/Propagation.h"
 #include "include/BackPropagation.h"
-#include "include/OpenData.h"
 #include <iostream>
+
+// defines a function that the network will try to replicate
+Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations);
+
 
 int main(){
 
-	int numImgs = 6000;
-	int imgSize = 100;
-	unsigned char** imgData = OpenData::read_mnist_images("../train-images.idx3-ubyte", numImgs, imgSize);
+	srand( (unsigned)time( NULL ) );
 
-	std::cout << imgData[0][0] << "\n";
+	Network net = Network({5, 10, 10, 2});
 
-	// Network net = Network({5, 10, 12, 4});
+	for(int j = 0; j < 5; j++){
+	Eigen::VectorXd input(5);
 
-	// for(int i = 0; i < net.numLayers - 1; i++){
-	// 	std::cout << "net biases:\n" << net.biases.at(i) << "\n";
-	// 	std::cout << "net weights:\n" << net.weights.at(i) << "\n";
-	// }
+	Eigen::VectorXd output(2);
 
-	// BackPropagation backPropagate = BackPropagation();
+	for(int i = 0; i < 5; i++){
+		input(i) = rand()%10 + 1;
+	}
+
+	output = testFunction(input);
+
+	std::cout << "standard output: \n" << output << "\n";
+
+	output = Propagation::propagate(input, net);
+
+	std::cout << "network output: \n" << output << "\n";
+
+	}
+
+	std::cout << "===================\n";
 
 
-	// Eigen::VectorXd input(5);
+	BackPropagation backPropagate = BackPropagation();
 
-	// for(int i = 0; i < 5; i++){
-	// 	input(i) = i + 1;
-	// }
+	int num = 0;
 
-	// Eigen::VectorXd output(4);
+	while (num < 50000){
+		Eigen::VectorXd input(5);
 
-	// for(int i = 0; i < 4; i++){
-	// 	output(i) = i + 1;
-	// }
+		Eigen::VectorXd output(2);
 
-	// Network newNet = backPropagate.backProp(net, input, output);
+		for(int i = 0; i < 5; i++){
+			input(i) = rand()%10 + 1;
+		}
 
-	// for(int i = 0; i < net.numLayers - 1; i++){
-	// 	std::cout << "back biases:\n" << newNet.biases.at(i) << "\n";
-	// 	std::cout << "back weights:\n" << newNet.weights.at(i) << "\n";
-	// }
+		output = testFunction(input);
+
+		net = backPropagate.backProp(net, input, output);
+
+		num++;
+	}
+
+	for(int j = 0; j < 5; j++){
+	Eigen::VectorXd input(5);
+
+	Eigen::VectorXd output(2);
+
+	for(int i = 0; i < 5; i++){
+		input(i) = rand()%10 + 1;
+	}
+
+	output = testFunction(input);
+
+	std::cout << "standard output: \n" << output << "\n";
+
+	output = Propagation::propagate(input, net);
+
+	std::cout << "network output: \n" << output << "\n";
+
+	}
 
 	return 0;
+}
+
+
+
+Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations){
+
+	double sum = inputActivations.sum() / 50;
+	double take = abs((sum * 50) - 2 * (inputActivations(0)  + inputActivations(1)))/48;
+
+	Eigen::Vector2d output(sum, take);
+	return output;
 }
 
 

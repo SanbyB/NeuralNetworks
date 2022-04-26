@@ -4,7 +4,6 @@
 CMakeFiles/NeuralNetwork.dir/main.cpp.o
  /home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
  /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
- /home/ben/Desktop/Learning/NeuralNetworks/include/OpenData.h
  /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
  /home/ben/Desktop/Learning/NeuralNetworks/main.cpp
  /usr/local/include/eigen3/Eigen/Cholesky
@@ -651,9 +650,6 @@ CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o
  /usr/local/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h
  /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h
-CMakeFiles/NeuralNetwork.dir/src/OpenData.cpp.o
- /home/ben/Desktop/Learning/NeuralNetworks/include/OpenData.h
- /home/ben/Desktop/Learning/NeuralNetworks/src/OpenData.cpp
 CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o
  /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
  /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
