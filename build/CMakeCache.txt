@@ -196,6 +196,9 @@ Project_BINARY_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks/build
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks
 
+//The directory containing a CMake configuration file for SFML.
+SFML_DIR:PATH=SFML_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries

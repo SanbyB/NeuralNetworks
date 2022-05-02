@@ -4,11 +4,33 @@
 #include "include/BackPropagation.h"
 #include <iostream>
 
+#include <SFML/Graphics.hpp>
+
+
+
 // defines a function that the network will try to replicate
 Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations);
 
 
 int main(){
+
+	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::RectangleShape shape(sf::Vector2f(20, 30));
+    shape.setFillColor(sf::Color::Green);
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear();
+        window.draw(shape);
+        window.display();
+    }
 
 	srand( (unsigned)time( NULL ) );
 

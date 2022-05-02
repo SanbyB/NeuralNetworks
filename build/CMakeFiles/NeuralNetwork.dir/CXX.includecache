@@ -37,6 +37,8 @@ include/BackPropagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
 iostream
 -
+SFML/Graphics.hpp
+-
 
 /home/ben/Desktop/Learning/NeuralNetworks/src/BackPropagation.cpp
 ../include/BackPropagation.h

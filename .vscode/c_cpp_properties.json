@@ -6,7 +6,8 @@
                 "${default}",
                 "${workspaceFolder}",
                 "/usr/local/include/eigen3/Eigen",
-                "/home/ben/Downloads/eigen-3.4.0"
+                "/home/ben/Downloads/eigen-3.4.0",
+                "${workspaceFolder}/SFML-2.5.1/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
