@@ -62,5 +62,6 @@
 		"thread": "cpp",
 		"cfenv": "cpp",
 		"valarray": "cpp"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }

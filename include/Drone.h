@@ -9,7 +9,9 @@ public:
 	// thrust value between 0-10,corresponds to acceleration
 	double thrust;
 
-	//  angle (in radians) the thuster makes with the drone body, 0 is upright
+	/*  angle (in radians) the thuster makes with the drone body,
+	 0 is upright, counterclockwise convention
+	*/
 	double angle;
 
 	Thruster();
@@ -20,8 +22,6 @@ Thruster::Thruster(){
 	thrust = 0;
 	angle = 0;
 }
-
-
 
 class Drone{
 
@@ -51,18 +51,18 @@ public:
 	Thruster rightThruster = Thruster();
 
 	// current position of the drone
-	double posX;
-	double posY;
+	double posX = 0;
+	double posY = 0;
 
 	// current velocity of the drone
-	double velX;
-	double velY;
+	double velX = 0;
+	double velY = 0;
 
-	// current angle of the drone
-	double angle;
+	// current angle of the drone (rad, counterclockwise convention)
+	double angle = 0;
 
-	// current angular velocity
-	double angularVel;
+	// current angular velocity (rad, counterclockwise convention)
+	double angularVel = 0;
 
 	// position of the target
 	double targetX;
