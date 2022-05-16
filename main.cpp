@@ -2,55 +2,125 @@
 #include "include/Network.h"
 #include "include/Propagation.h"
 #include "include/BackPropagation.h"
+#include "include/Drone.h"
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
 
 
-
 // defines a function that the network will try to replicate
-Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations);
+// Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations);
+
+
+// Visual constants
+
+int screenSize = 800;
+
+int droneWidth = 40;
+int droneHeight = 16;
+
+int thrusterWidth = 8;
+int thrusterHeight = 20;
 
 
 int main(){
 
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::RectangleShape shape(sf::Vector2f(20, 20));
-    shape.setFillColor(sf::Color::Green);
-	shape.setOrigin(sf::Vector2f(10, 10));
+	sf::RenderWindow window(sf::VideoMode(screenSize, screenSize), "Drone simulation!");
+	window.setFramerateLimit(200);
+
+	Drone drone = Drone();
+
+	// Drone graphics
+
+    sf::RectangleShape droneShape(sf::Vector2f(droneWidth, droneHeight));
+	sf::RectangleShape leftThrShape(sf::Vector2f(thrusterWidth, thrusterHeight));
+	sf::RectangleShape rightThrShape(sf::Vector2f(thrusterWidth, thrusterHeight));
+
+	// init graphics
+
+	sf::Vector2f droneOrigin(screenSize/2, screenSize/2);
+	sf::Vector2f lThrOffset(droneWidth/2, -droneHeight/2);
+	sf::Vector2f rThrOffset(-droneWidth/2, -droneHeight/2);
+
+    droneShape.setFillColor(sf::Color::White);
+	droneShape.setOrigin(sf::Vector2f(droneWidth/2, droneHeight/2));
+	droneShape.setPosition(droneOrigin);
+
+	leftThrShape.setFillColor(sf::Color::Green);
+	leftThrShape.setOrigin(sf::Vector2f(thrusterWidth/2, thrusterHeight/2));
+	leftThrShape.setPosition(sf::Vector2f(droneOrigin - lThrOffset));
+
+	rightThrShape.setFillColor(sf::Color::Red);
+	rightThrShape.setOrigin(sf::Vector2f(thrusterWidth/2, thrusterHeight/2));
+	rightThrShape.setPosition(sf::Vector2f(droneOrigin - rThrOffset));
+
+
+	// Player input
+
+	bool w = false;
+	bool s = false;
+	bool a = false;
+	bool d = false;
+	bool i = false;
+	bool k = false;
+	bool j = false;
+	bool l = false;
+
+	// Game loop
 
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
+			// close window
             if (event.type == sf::Event::Closed)
                 window.close();
 
+			// key pressed
 			if(event.type == sf::Event::KeyPressed){
-				if(event.key.code == sf::Keyboard::D){
-					shape.move(sf::Vector2f(1, 0));
-				}
-				if(event.key.code == sf::Keyboard::A){
-					shape.move(sf::Vector2f(-1, 0));
-				}
-				if(event.key.code == sf::Keyboard::W){
-					shape.move(sf::Vector2f(0, -1));
-				}
-				if(event.key.code == sf::Keyboard::S){
-					shape.move(sf::Vector2f(0, 1));
-				}
-				if(event.key.code == sf::Keyboard::E){
-					shape.rotate(1);
-				}
-				if(event.key.code == sf::Keyboard::Q){
-					shape.rotate(-1);
-				}
+				if(event.key.code == sf::Keyboard::W){ w = true; }
+				if(event.key.code == sf::Keyboard::S){ s = true; }
+				if(event.key.code == sf::Keyboard::A){ a = true; }
+				if(event.key.code == sf::Keyboard::D){ d = true; }
+				if(event.key.code == sf::Keyboard::I){ i = true; }
+				if(event.key.code == sf::Keyboard::K){ k = true; }
+				if(event.key.code == sf::Keyboard::J){ j = true; }
+				if(event.key.code == sf::Keyboard::L){ l = true; }
+			}
+			// key released
+			if(event.type == sf::Event::KeyReleased){
+				if(event.key.code == sf::Keyboard::W){ w = false; }
+				if(event.key.code == sf::Keyboard::S){ s = false; }
+				if(event.key.code == sf::Keyboard::A){ a = false; }
+				if(event.key.code == sf::Keyboard::D){ d = false; }
+				if(event.key.code == sf::Keyboard::I){ i = false; }
+				if(event.key.code == sf::Keyboard::K){ k = false; }
+				if(event.key.code == sf::Keyboard::J){ j = false; }
+				if(event.key.code == sf::Keyboard::L){ l = false; }
 			}
         }
 
+		if(w){ drone.leftThruster.thrust += 0.0001; }
+		if(s){ drone.leftThruster.thrust -= 0.0001; }
+		if(a){ drone.leftThruster.angle += 0.0001; }
+		if(d){ drone.leftThruster.angle -= 0.0001; }
+		if(i){ drone.rightThruster.thrust += 0.0001; }
+		if(k){ drone.rightThruster.thrust -= 0.0001; }
+		if(j){ drone.rightThruster.angle += 0.0001; }
+		if(l){ drone.rightThruster.angle -= 0.0001; }
+
+		drone.applyForces(screenSize);
+
+		std::cout << "Speed: " << drone.velX << ", " << drone.velY << "\n";
+
+		droneShape.setPosition(droneOrigin - sf::Vector2f(drone.posX, drone.posY));
+
+
         window.clear();
-        window.draw(shape);
+        window.draw(droneShape);
+		window.draw(leftThrShape);
+		window.draw(rightThrShape);
         window.display();
     }
 
@@ -124,14 +194,14 @@ int main(){
 
 
 
-Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations){
+// Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations){
 
-	double sum = inputActivations.sum() / 50;
-	double take = abs((sum * 50) - 2 * (inputActivations(0)  + inputActivations(1)))/48;
+// 	double sum = inputActivations.sum() / 50;
+// 	double take = abs((sum * 50) - 2 * (inputActivations(0)  + inputActivations(1)))/48;
 
-	Eigen::Vector2d output(sum, take);
-	return output;
-}
+// 	Eigen::Vector2d output(sum, take);
+// 	return output;
+// }
 
 
 

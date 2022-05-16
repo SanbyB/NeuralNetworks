@@ -14,14 +14,13 @@ public:
 	*/
 	double angle;
 
-	Thruster();
+	Thruster(){
+		thrust = 0;
+		angle = 0;
+	}
 
-}
+};
 
-Thruster::Thruster(){
-	thrust = 0;
-	angle = 0;
-}
 
 class Drone{
 
@@ -44,7 +43,7 @@ public:
 	- thruster angle left
 	- thruster angle right
 	*/
-	Network flightComputer;
+	// Network flightComputer;
 
 	Thruster leftThruster = Thruster();
 
@@ -73,12 +72,12 @@ public:
 	the thruster will affect the angular velocity of the drone.
 	This will update all the spatial variables of the drone.
 	*/
-	void applyForces();
+	void applyForces(int screenSize);
 
 	/*
 	Propagates the current spatial properties through the flightComputer
 	*/
-	void computeThrust();
+	void computeThrust(Network flightComputer);
 
 	// checks if the target has been hit, returns true if it has
 	bool hitTarget();

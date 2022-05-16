@@ -7,6 +7,7 @@ main.cpp
 src/Network.cpp
 src/Propagation.cpp
 src/BackPropagation.cpp
+src/Drone.cpp
 )
 
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)

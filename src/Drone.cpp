@@ -2,7 +2,10 @@
 #include "../include/Propagation.h"
 
 
-void Drone::computeThrust(){
+Drone::Drone(){}
+Drone::~Drone(){}
+
+void Drone::computeThrust(Network flightComputer){
 	Eigen::VectorXd input(7);
 
 	input(0) = posX - targetX;
@@ -24,8 +27,7 @@ void Drone::computeThrust(){
 }
 
 bool Drone::hitTarget(){
-	// TODO define minDIst
-	double minDist = 2;
+	double minDist = 5;
 	if(abs(posX - targetX) < minDist){
 		if(abs(posY - targetY) < minDist){
 			return true;
@@ -34,9 +36,9 @@ bool Drone::hitTarget(){
 	return false;
 }
 
-void Drone::applyForces(){
+void Drone::applyForces(int screenSize){
 	// apply force of gravity
-	velY -= 10;
+	velY -= 0.001;
 
 	// apply thruster force in the Y direction
 	velY += std::cos(leftThruster.angle + angle) * leftThruster.thrust;
@@ -55,4 +57,11 @@ void Drone::applyForces(){
 
 	// apply angular vel to angle
 	angle += angularVel;
+
+	// apply wall forces
+	if(posX < -screenSize / 2){ posX = -screenSize / 2; velX = 0; }
+	if(posX > screenSize / 2){ posX = screenSize / 2; velX = 0; }
+	if(posY < -screenSize / 2){ posY = -screenSize / 2; velY = 0; }
+	if(posY > screenSize / 2){ posY = screenSize / 2; velY = 0; }
+
 }

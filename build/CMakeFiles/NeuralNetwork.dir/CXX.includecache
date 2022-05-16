@@ -14,6 +14,10 @@ Propagation.h
 Network.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
 
+/home/ben/Desktop/Learning/NeuralNetworks/include/Drone.h
+Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+
 /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
 Eigen/Dense
 /home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
@@ -35,6 +39,8 @@ include/Propagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
 include/BackPropagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+include/Drone.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Drone.h
 iostream
 -
 SFML/Graphics.hpp
@@ -45,6 +51,12 @@ SFML/Graphics.hpp
 /home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
 iostream
 -
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/Drone.cpp
+../include/Drone.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Drone.h
+../include/Propagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
 
 /home/ben/Desktop/Learning/NeuralNetworks/src/Network.cpp
 ../include/Network.h

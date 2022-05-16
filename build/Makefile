@@ -177,6 +177,33 @@ src/BackPropagation.cpp.s:
 	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.s
 .PHONY : src/BackPropagation.cpp.s
 
+src/Drone.o: src/Drone.cpp.o
+
+.PHONY : src/Drone.o
+
+# target to build an object file
+src/Drone.cpp.o:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o
+.PHONY : src/Drone.cpp.o
+
+src/Drone.i: src/Drone.cpp.i
+
+.PHONY : src/Drone.i
+
+# target to preprocess a source file
+src/Drone.cpp.i:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.i
+.PHONY : src/Drone.cpp.i
+
+src/Drone.s: src/Drone.cpp.s
+
+.PHONY : src/Drone.s
+
+# target to generate assembly for a file
+src/Drone.cpp.s:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.s
+.PHONY : src/Drone.cpp.s
+
 src/Network.o: src/Network.cpp.o
 
 .PHONY : src/Network.o
@@ -246,6 +273,9 @@ help:
 	@echo "... src/BackPropagation.o"
 	@echo "... src/BackPropagation.i"
 	@echo "... src/BackPropagation.s"
+	@echo "... src/Drone.o"
+	@echo "... src/Drone.i"
+	@echo "... src/Drone.s"
 	@echo "... src/Network.o"
 	@echo "... src/Network.i"
 	@echo "... src/Network.s"

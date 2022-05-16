@@ -1,9 +1,7 @@
 #include "../include/Target.h"
 
-Target::spawnTarget(){
+Target::spawnTarget(int screenSize){
 	srand( (unsigned)time( NULL ) );
-	// TODO define screen_size
-	int screen_size = 200;
-	posX = (rand() % screen_size) - (screen_size / 2);
-	posY = (rand() % screen_size) - (screen_size / 2)
+	posX = (rand() % screenSize) - (screenSize / 2);
+	posY = (rand() % screenSize) - (screenSize / 2)
 }

@@ -7,5 +7,5 @@ public:
 	double posX;
 	double posY;
 
-	void spawnTarget();
+	void spawnTarget(int screenSize);
 };
