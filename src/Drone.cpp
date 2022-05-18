@@ -38,7 +38,7 @@ bool Drone::hitTarget(){
 
 void Drone::applyForces(int screenSize){
 	// apply force of gravity
-	velY -= 0.001;
+	velY -= 0.0005;
 
 	// apply thruster force in the Y direction
 	velY += std::cos(leftThruster.angle + angle) * leftThruster.thrust;
@@ -48,8 +48,8 @@ void Drone::applyForces(int screenSize){
 	velX += std::sin(rightThruster.angle  + angle) * rightThruster.thrust;
 
 	// apply thruster force to the angluar velocity
-	angularVel += std::cos(rightThruster.angle) * rightThruster.thrust;
-	angularVel -= std::cos(leftThruster.angle) * leftThruster.thrust;
+	angularVel += 0.01 * std::cos(rightThruster.angle) * rightThruster.thrust;
+	angularVel -= 0.01 * std::cos(leftThruster.angle) * leftThruster.thrust;
 
 	// apply velocity to position
 	posX += velX;

@@ -101,21 +101,28 @@ int main(){
 			}
         }
 
-		if(w){ drone.leftThruster.thrust += 0.0001; }
-		if(s){ drone.leftThruster.thrust -= 0.0001; }
-		if(a){ drone.leftThruster.angle += 0.0001; }
-		if(d){ drone.leftThruster.angle -= 0.0001; }
-		if(i){ drone.rightThruster.thrust += 0.0001; }
-		if(k){ drone.rightThruster.thrust -= 0.0001; }
-		if(j){ drone.rightThruster.angle += 0.0001; }
-		if(l){ drone.rightThruster.angle -= 0.0001; }
+		if(w){ drone.leftThruster.thrust += 0.000005; }
+		if(s){ drone.leftThruster.thrust -= 0.000005; }
+		if(a){ drone.leftThruster.angle += 0.01; }
+		if(d){ drone.leftThruster.angle -= 0.01; }
+		if(i){ drone.rightThruster.thrust += 0.000005; }
+		if(k){ drone.rightThruster.thrust -= 0.000005; }
+		if(j){ drone.rightThruster.angle += 0.01; }
+		if(l){ drone.rightThruster.angle -= 0.01; }
 
 		drone.applyForces(screenSize);
 
-		std::cout << "Speed: " << drone.velX << ", " << drone.velY << "\n";
-
 		droneShape.setPosition(droneOrigin - sf::Vector2f(drone.posX, drone.posY));
+		droneShape.setRotation(-drone.angle * 180 / M_PI);
 
+		lThrOffset = sf::Vector2f(droneWidth/2 * std::cos(drone.angle) - std::sin(drone.angle) * droneHeight/2, -droneHeight/2 * std::cos(drone.angle) - std::sin(drone.angle) * droneWidth/2);
+		rThrOffset = sf::Vector2f(-droneWidth/2 * std::cos(drone.angle) - std::sin(drone.angle)* droneHeight/2, -droneHeight/2 * std::cos(drone.angle) + std::sin(drone.angle)* droneWidth/2);
+
+		leftThrShape.setPosition(droneShape.getPosition() - lThrOffset);
+		rightThrShape.setPosition(droneShape.getPosition() - rThrOffset);
+
+		leftThrShape.setRotation((-drone.leftThruster.angle - drone.angle) * 180 / M_PI);
+		rightThrShape.setRotation((-drone.rightThruster.angle - drone.angle) * 180 / M_PI);
 
         window.clear();
         window.draw(droneShape);
