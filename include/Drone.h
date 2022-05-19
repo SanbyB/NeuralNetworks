@@ -1,6 +1,7 @@
 #pragma once
 #include "Network.h"
-
+#include "Target.h"
+#include <memory>
 
 class Thruster{
 
@@ -63,9 +64,8 @@ public:
 	// current angular velocity (rad, counterclockwise convention)
 	double angularVel = 0;
 
-	// position of the target
-	double targetX;
-	double targetY;
+	// drones target
+	std::shared_ptr<Target> target;
 
 	/*
 	Applies the forces from the thrusters and gravity to the drone,

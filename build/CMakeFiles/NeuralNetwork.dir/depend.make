@@ -5,6 +5,7 @@ CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/BackPropagation.h
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/Drone.h
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/Network.h
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/Propagation.h
+CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../include/Target.h
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: ../main.cpp
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: /usr/local/include/eigen3/Eigen/Cholesky
 CMakeFiles/NeuralNetwork.dir/main.cpp.o: /usr/local/include/eigen3/Eigen/Core
@@ -439,6 +440,7 @@ CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.o: /usr/local/include/eigen
 CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o: ../include/Drone.h
 CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o: ../include/Network.h
 CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o: ../include/Propagation.h
+CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o: ../include/Target.h
 CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o: ../src/Drone.cpp
 CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o: /usr/local/include/eigen3/Eigen/Cholesky
 CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o: /usr/local/include/eigen3/Eigen/Core
@@ -1083,4 +1085,7 @@ CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o: /usr/local/include/eigen3/Ei
 CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o: /usr/local/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h
 CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o: /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o: /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+
+CMakeFiles/NeuralNetwork.dir/src/Target.cpp.o: ../include/Target.h
+CMakeFiles/NeuralNetwork.dir/src/Target.cpp.o: ../src/Target.cpp
 

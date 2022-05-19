@@ -1,6 +1,6 @@
 #include "../include/Drone.h"
 #include "../include/Propagation.h"
-
+#include <iostream>
 
 Drone::Drone(){}
 Drone::~Drone(){}
@@ -8,8 +8,8 @@ Drone::~Drone(){}
 void Drone::computeThrust(Network flightComputer){
 	Eigen::VectorXd input(7);
 
-	input(0) = posX - targetX;
-	input(1) = posY - targetY;
+	input(0) = posX - target->posX;
+	input(1) = posY - target->posY;
 	input(2) = velX;
 	input(3) = velY;
 	input(4) = std::cos(angle);
@@ -27,9 +27,9 @@ void Drone::computeThrust(Network flightComputer){
 }
 
 bool Drone::hitTarget(){
-	double minDist = 5;
-	if(abs(posX - targetX) < minDist){
-		if(abs(posY - targetY) < minDist){
+	double minDist = 40;
+	if(abs(posX - target->posX) < minDist){
+		if(abs(posY - target->posY) < minDist){
 			return true;
 		}
 	}

@@ -1,3 +1,4 @@
+#pragma once
 
 class Target{
 public:
@@ -7,5 +8,9 @@ public:
 	double posX;
 	double posY;
 
-	void spawnTarget(int screenSize);
+	int screenSize;
+
+	void initTarget(int screen);
+
+	void spawnTarget();
 };

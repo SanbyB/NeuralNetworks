@@ -6,6 +6,7 @@ CMakeFiles/NeuralNetwork.dir/main.cpp.o
  /home/ben/Desktop/Learning/NeuralNetworks/include/Drone.h
  /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
  /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
+ /home/ben/Desktop/Learning/NeuralNetworks/include/Target.h
  /home/ben/Desktop/Learning/NeuralNetworks/main.cpp
  /usr/local/include/eigen3/Eigen/Cholesky
  /usr/local/include/eigen3/Eigen/Core
@@ -440,6 +441,7 @@ CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o
  /home/ben/Desktop/Learning/NeuralNetworks/include/Drone.h
  /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
  /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
+ /home/ben/Desktop/Learning/NeuralNetworks/include/Target.h
  /home/ben/Desktop/Learning/NeuralNetworks/src/Drone.cpp
  /usr/local/include/eigen3/Eigen/Cholesky
  /usr/local/include/eigen3/Eigen/Core
@@ -1084,3 +1086,6 @@ CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o
  /usr/local/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h
  /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  /usr/local/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+CMakeFiles/NeuralNetwork.dir/src/Target.cpp.o
+ /home/ben/Desktop/Learning/NeuralNetworks/include/Target.h
+ /home/ben/Desktop/Learning/NeuralNetworks/src/Target.cpp

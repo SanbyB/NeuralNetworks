@@ -3,6 +3,8 @@
 #include "include/Propagation.h"
 #include "include/BackPropagation.h"
 #include "include/Drone.h"
+#include "include/Target.h"
+#include <memory>
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
@@ -23,6 +25,8 @@ int thrusterWidth = 8;
 int thrusterHeight = 20;
 
 
+
+
 int main(){
 
 	sf::RenderWindow window(sf::VideoMode(screenSize, screenSize), "Drone simulation!");
@@ -30,17 +34,31 @@ int main(){
 
 	Drone drone = Drone();
 
+	auto target = std::make_shared<Target>();
+
+	target->initTarget(screenSize);
+
+	drone.target = target;
+
+	int score = 0;
+
+	int pause = 0;
+
 	// Drone graphics
 
     sf::RectangleShape droneShape(sf::Vector2f(droneWidth, droneHeight));
 	sf::RectangleShape leftThrShape(sf::Vector2f(thrusterWidth, thrusterHeight));
 	sf::RectangleShape rightThrShape(sf::Vector2f(thrusterWidth, thrusterHeight));
 
+	// Target graphics
+	sf::CircleShape targetShape(5);
+
 	// init graphics
 
 	sf::Vector2f droneOrigin(screenSize/2, screenSize/2);
 	sf::Vector2f lThrOffset(droneWidth/2, -droneHeight/2);
 	sf::Vector2f rThrOffset(-droneWidth/2, -droneHeight/2);
+	sf::Vector2f tPos(target->posX, target->posY);
 
     droneShape.setFillColor(sf::Color::White);
 	droneShape.setOrigin(sf::Vector2f(droneWidth/2, droneHeight/2));
@@ -53,6 +71,10 @@ int main(){
 	rightThrShape.setFillColor(sf::Color::Red);
 	rightThrShape.setOrigin(sf::Vector2f(thrusterWidth/2, thrusterHeight/2));
 	rightThrShape.setPosition(sf::Vector2f(droneOrigin - rThrOffset));
+
+	targetShape.setFillColor(sf::Color::Magenta);
+	targetShape.setOrigin(sf::Vector2f(2.5, 2.5));
+	targetShape.setPosition(droneOrigin - tPos);
 
 
 	// Player input
@@ -124,10 +146,19 @@ int main(){
 		leftThrShape.setRotation((-drone.leftThruster.angle - drone.angle) * 180 / M_PI);
 		rightThrShape.setRotation((-drone.rightThruster.angle - drone.angle) * 180 / M_PI);
 
+		if(pause == 0 && drone.hitTarget()){
+			target->spawnTarget();
+			score++;
+		}
+
+		tPos = sf::Vector2f(target->posX, target->posY);
+		targetShape.setPosition(droneOrigin - tPos);
+
         window.clear();
         window.draw(droneShape);
 		window.draw(leftThrShape);
 		window.draw(rightThrShape);
+		window.draw(targetShape);
         window.display();
     }
 
