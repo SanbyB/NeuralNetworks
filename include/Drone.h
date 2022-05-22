@@ -46,9 +46,9 @@ public:
 	*/
 	// Network flightComputer;
 
-	Thruster leftThruster = Thruster();
+	std::shared_ptr<Thruster> leftThruster = std::make_shared<Thruster>();
 
-	Thruster rightThruster = Thruster();
+	std::shared_ptr<Thruster> rightThruster = std::make_shared<Thruster>();
 
 	// current position of the drone
 	double posX = 0;

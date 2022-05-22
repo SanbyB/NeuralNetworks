@@ -9,11 +9,6 @@
 
 #include <SFML/Graphics.hpp>
 
-
-// defines a function that the network will try to replicate
-// Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations);
-
-
 // Visual constants
 
 int screenSize = 800;
@@ -24,7 +19,7 @@ int droneHeight = 16;
 int thrusterWidth = 8;
 int thrusterHeight = 20;
 
-
+bool humanControl = false;
 
 
 int main(){
@@ -33,6 +28,8 @@ int main(){
 	window.setFramerateLimit(200);
 
 	Drone drone = Drone();
+
+	Network flightComputer = Network({7, 25, 25, 4});
 
 	auto target = std::make_shared<Target>();
 
@@ -76,7 +73,6 @@ int main(){
 	targetShape.setOrigin(sf::Vector2f(2.5, 2.5));
 	targetShape.setPosition(droneOrigin - tPos);
 
-
 	// Player input
 
 	bool w = false;
@@ -99,38 +95,77 @@ int main(){
             if (event.type == sf::Event::Closed)
                 window.close();
 
-			// key pressed
-			if(event.type == sf::Event::KeyPressed){
-				if(event.key.code == sf::Keyboard::W){ w = true; }
-				if(event.key.code == sf::Keyboard::S){ s = true; }
-				if(event.key.code == sf::Keyboard::A){ a = true; }
-				if(event.key.code == sf::Keyboard::D){ d = true; }
-				if(event.key.code == sf::Keyboard::I){ i = true; }
-				if(event.key.code == sf::Keyboard::K){ k = true; }
-				if(event.key.code == sf::Keyboard::J){ j = true; }
-				if(event.key.code == sf::Keyboard::L){ l = true; }
-			}
-			// key released
-			if(event.type == sf::Event::KeyReleased){
-				if(event.key.code == sf::Keyboard::W){ w = false; }
-				if(event.key.code == sf::Keyboard::S){ s = false; }
-				if(event.key.code == sf::Keyboard::A){ a = false; }
-				if(event.key.code == sf::Keyboard::D){ d = false; }
-				if(event.key.code == sf::Keyboard::I){ i = false; }
-				if(event.key.code == sf::Keyboard::K){ k = false; }
-				if(event.key.code == sf::Keyboard::J){ j = false; }
-				if(event.key.code == sf::Keyboard::L){ l = false; }
+			if(humanControl){
+				// key pressed
+				if(event.type == sf::Event::KeyPressed){
+					if(event.key.code == sf::Keyboard::W){ w = true; }
+					if(event.key.code == sf::Keyboard::S){ s = true; }
+					if(event.key.code == sf::Keyboard::A){ a = true; }
+					if(event.key.code == sf::Keyboard::D){ d = true; }
+					if(event.key.code == sf::Keyboard::I){ i = true; }
+					if(event.key.code == sf::Keyboard::K){ k = true; }
+					if(event.key.code == sf::Keyboard::J){ j = true; }
+					if(event.key.code == sf::Keyboard::L){ l = true; }
+				}
+				// key released
+				if(event.type == sf::Event::KeyReleased){
+					if(event.key.code == sf::Keyboard::W){ w = false; }
+					if(event.key.code == sf::Keyboard::S){ s = false; }
+					if(event.key.code == sf::Keyboard::A){ a = false; }
+					if(event.key.code == sf::Keyboard::D){ d = false; }
+					if(event.key.code == sf::Keyboard::I){ i = false; }
+					if(event.key.code == sf::Keyboard::K){ k = false; }
+					if(event.key.code == sf::Keyboard::J){ j = false; }
+					if(event.key.code == sf::Keyboard::L){ l = false; }
+				}
 			}
         }
+		if(humanControl){
+			if(w){ drone.leftThruster->thrust += 0.00005; }
+			if(s){ drone.leftThruster->thrust -= 0.00005; }
+			if(a){ drone.leftThruster->angle += 0.1; }
+			if(d){ drone.leftThruster->angle -= 0.1; }
+			if(i){ drone.rightThruster->thrust += 0.00005; }
+			if(k){ drone.rightThruster->thrust -= 0.00005; }
+			if(j){ drone.rightThruster->angle += 0.1; }
+			if(l){ drone.rightThruster->angle -= 0.1; }
+		}
+		else{
+			/*
+			7 Inputs:
+			- target distance x
+			- target distance y
+			- velocity x
+			- velocity y
+			- cos(angle)
+			- sin(angle)
+			- angular velocity
+			4 Outputs:
+			- thrust left
+			- thrust right
+			- thruster angle left
+			- thruster angle right
+			*/
+			double distX = drone.posX - target->posX;
+			double distY = drone.posY - target->posY;
+			Eigen::VectorXd inputs(7);
+			// TODO normalise inputs and unnormalise outputs
+			inputs(0) = distX / screenSize;
+			inputs(1) = distY / screenSize;
+			inputs(2) = drone.velX;
+			inputs(3) = drone.velY;
+			inputs(4) = std::cos(drone.angle);
+			inputs(5) = std::sin(drone.angle);
+			inputs(6) = drone.angularVel;
+			Eigen::VectorXd output = Propagation::propagate(inputs, flightComputer);
+			drone.leftThruster->thrust = output(0);
+			drone.rightThruster->thrust = output(1);
+			drone.leftThruster->angle = output(2);
+			drone.rightThruster->angle = output(3);
 
-		if(w){ drone.leftThruster.thrust += 0.000005; }
-		if(s){ drone.leftThruster.thrust -= 0.000005; }
-		if(a){ drone.leftThruster.angle += 0.01; }
-		if(d){ drone.leftThruster.angle -= 0.01; }
-		if(i){ drone.rightThruster.thrust += 0.000005; }
-		if(k){ drone.rightThruster.thrust -= 0.000005; }
-		if(j){ drone.rightThruster.angle += 0.01; }
-		if(l){ drone.rightThruster.angle -= 0.01; }
+			std::cout << "lThr: " << drone.leftThruster->thrust << " lAng: " << drone.leftThruster->angle
+					  << " rThr: " << drone.rightThruster->thrust << " rAng: " << drone.rightThruster->angle << "\n";
+		}
 
 		drone.applyForces(screenSize);
 
@@ -143,8 +178,8 @@ int main(){
 		leftThrShape.setPosition(droneShape.getPosition() - lThrOffset);
 		rightThrShape.setPosition(droneShape.getPosition() - rThrOffset);
 
-		leftThrShape.setRotation((-drone.leftThruster.angle - drone.angle) * 180 / M_PI);
-		rightThrShape.setRotation((-drone.rightThruster.angle - drone.angle) * 180 / M_PI);
+		leftThrShape.setRotation((-drone.leftThruster->angle - drone.angle) * 180 / M_PI);
+		rightThrShape.setRotation((-drone.rightThruster->angle - drone.angle) * 180 / M_PI);
 
 		if(pause == 0 && drone.hitTarget()){
 			target->spawnTarget();
@@ -162,84 +197,9 @@ int main(){
         window.display();
     }
 
-	// srand( (unsigned)time( NULL ) );
+	return 0;
 
-	// Network net = Network({5, 10, 10, 2});
-
-	// for(int j = 0; j < 5; j++){
-	// Eigen::VectorXd input(5);
-
-	// Eigen::VectorXd output(2);
-
-	// for(int i = 0; i < 5; i++){
-	// 	input(i) = rand()%10 + 1;
-	// }
-
-	// output = testFunction(input);
-
-	// std::cout << "standard output: \n" << output << "\n";
-
-	// output = Propagation::propagate(input, net);
-
-	// std::cout << "network output: \n" << output << "\n";
-
-	// }
-
-	// std::cout << "===================\n";
-
-
-	// BackPropagation backPropagate = BackPropagation();
-
-	// int num = 0;
-
-	// while (num < 50000){
-	// 	Eigen::VectorXd input(5);
-
-	// 	Eigen::VectorXd output(2);
-
-	// 	for(int i = 0; i < 5; i++){
-	// 		input(i) = rand()%10 + 1;
-	// 	}
-
-	// 	output = testFunction(input);
-
-	// 	net = backPropagate.backProp(net, input, output);
-
-	// 	num++;
-	// }
-
-	// for(int j = 0; j < 5; j++){
-	// Eigen::VectorXd input(5);
-
-	// Eigen::VectorXd output(2);
-
-	// for(int i = 0; i < 5; i++){
-	// 	input(i) = rand()%10 + 1;
-	// }
-
-	// output = testFunction(input);
-
-	// std::cout << "standard output: \n" << output << "\n";
-
-	// output = Propagation::propagate(input, net);
-
-	// std::cout << "network output: \n" << output << "\n";
-
-	// }
-
-	// return 0;
 }
-
-
-
-// Eigen::VectorXd testFunction(Eigen::VectorXd inputActivations){
-
-// 	double sum = inputActivations.sum() / 50;
-// 	double take = abs((sum * 50) - 2 * (inputActivations(0)  + inputActivations(1)))/48;
-
-// 	Eigen::Vector2d output(sum, take);
-// 	return output;
-// }
 
 
 

@@ -20,10 +20,10 @@ void Drone::computeThrust(Network flightComputer){
 
 	output = Propagation::propagate(input, flightComputer);
 
-	leftThruster.thrust = output(0);
-	rightThruster.thrust = output(1);
-	leftThruster.angle = output(2);
-	rightThruster.angle = output(3);
+	leftThruster->thrust = output(0);
+	rightThruster->thrust = output(1);
+	leftThruster->angle = output(2);
+	rightThruster->angle = output(3);
 }
 
 bool Drone::hitTarget(){
@@ -38,18 +38,23 @@ bool Drone::hitTarget(){
 
 void Drone::applyForces(int screenSize){
 	// apply force of gravity
-	velY -= 0.0005;
+	velY -= 0.005;
+
+	if(leftThruster->thrust < 0){ leftThruster->thrust = 0; }
+	if(leftThruster->thrust > 0.005){ leftThruster->thrust = 0.005; }
+	if(rightThruster->thrust < 0){ rightThruster->thrust = 0; }
+	if(rightThruster->thrust > 0.005){ rightThruster->thrust = 0.005; }
 
 	// apply thruster force in the Y direction
-	velY += std::cos(leftThruster.angle + angle) * leftThruster.thrust;
-	velY += std::cos(rightThruster.angle + angle) * rightThruster.thrust;
+	velY += std::cos(leftThruster->angle + angle) * leftThruster->thrust;
+	velY += std::cos(rightThruster->angle + angle) * rightThruster->thrust;
 	//  apply thruster force in the X direction
-	velX += std::sin(leftThruster.angle + angle) * leftThruster.thrust;
-	velX += std::sin(rightThruster.angle  + angle) * rightThruster.thrust;
+	velX += std::sin(leftThruster->angle + angle) * leftThruster->thrust;
+	velX += std::sin(rightThruster->angle  + angle) * rightThruster->thrust;
 
 	// apply thruster force to the angluar velocity
-	angularVel += 0.01 * std::cos(rightThruster.angle) * rightThruster.thrust;
-	angularVel -= 0.01 * std::cos(leftThruster.angle) * leftThruster.thrust;
+	angularVel += 0.01 * std::cos(rightThruster->angle) * rightThruster->thrust;
+	angularVel -= 0.01 * std::cos(leftThruster->angle) * leftThruster->thrust;
 
 	// apply velocity to position
 	posX += velX;
