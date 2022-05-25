@@ -40,10 +40,18 @@ void Drone::applyForces(int screenSize){
 	// apply force of gravity
 	velY -= 0.005;
 
+	// restrict thrust
 	if(leftThruster->thrust < 0){ leftThruster->thrust = 0; }
-	if(leftThruster->thrust > 0.005){ leftThruster->thrust = 0.005; }
+	else if(leftThruster->thrust > 0.005){ leftThruster->thrust = 0.005; }
 	if(rightThruster->thrust < 0){ rightThruster->thrust = 0; }
-	if(rightThruster->thrust > 0.005){ rightThruster->thrust = 0.005; }
+	else if(rightThruster->thrust > 0.005){ rightThruster->thrust = 0.005; }
+
+	// restrict angle (for normalisation)
+	if(leftThruster->angle < -M_PI){ leftThruster->angle = M_PI; }
+	else if(leftThruster-> angle > M_PI){ leftThruster->angle = -M_PI; }
+	if(rightThruster->angle < -M_PI){ rightThruster->angle = M_PI; }
+	else if (rightThruster->angle > M_PI){ rightThruster->angle = -M_PI; }
+
 
 	// apply thruster force in the Y direction
 	velY += std::cos(leftThruster->angle + angle) * leftThruster->thrust;

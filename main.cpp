@@ -29,7 +29,7 @@ int main(){
 
 	Drone drone = Drone();
 
-	Network flightComputer = Network({7, 25, 25, 4});
+	Network flightComputer = Network({11, 40, 50, 40, 4});
 
 	auto target = std::make_shared<Target>();
 
@@ -121,18 +121,18 @@ int main(){
 			}
         }
 		if(humanControl){
-			if(w){ drone.leftThruster->thrust += 0.00005; }
-			if(s){ drone.leftThruster->thrust -= 0.00005; }
-			if(a){ drone.leftThruster->angle += 0.1; }
-			if(d){ drone.leftThruster->angle -= 0.1; }
-			if(i){ drone.rightThruster->thrust += 0.00005; }
-			if(k){ drone.rightThruster->thrust -= 0.00005; }
-			if(j){ drone.rightThruster->angle += 0.1; }
-			if(l){ drone.rightThruster->angle -= 0.1; }
+			if(w){ drone.leftThruster->thrust += 5e-5; }
+			if(s){ drone.leftThruster->thrust -= 5e-5; }
+			if(a){ drone.leftThruster->angle += 0.01; }
+			if(d){ drone.leftThruster->angle -= 0.01; }
+			if(i){ drone.rightThruster->thrust += 5e-5; }
+			if(k){ drone.rightThruster->thrust -= 5e-5; }
+			if(j){ drone.rightThruster->angle += 0.01; }
+			if(l){ drone.rightThruster->angle -= 0.01; }
 		}
 		else{
 			/*
-			7 Inputs:
+			11 Inputs:
 			- target distance x
 			- target distance y
 			- velocity x
@@ -140,6 +140,10 @@ int main(){
 			- cos(angle)
 			- sin(angle)
 			- angular velocity
+			- left thruster thrust
+			- left thruster angle
+			- right thruster thrust
+			- right thruster angle
 			4 Outputs:
 			- thrust left
 			- thrust right
@@ -148,23 +152,53 @@ int main(){
 			*/
 			double distX = drone.posX - target->posX;
 			double distY = drone.posY - target->posY;
-			Eigen::VectorXd inputs(7);
-			// TODO normalise inputs and unnormalise outputs
+			Eigen::VectorXd inputs(11);
+			// TODO better noramlisation
 			inputs(0) = distX / screenSize;
 			inputs(1) = distY / screenSize;
-			inputs(2) = drone.velX;
-			inputs(3) = drone.velY;
+			inputs(2) = drone.velX / 5;
+			inputs(3) = drone.velY / 5;
 			inputs(4) = std::cos(drone.angle);
 			inputs(5) = std::sin(drone.angle);
-			inputs(6) = drone.angularVel;
+			inputs(6) = drone.angularVel * 10;
+			inputs(7) = drone.leftThruster->thrust / 0.005; // TODO change this to a config
+			inputs(8) = drone.leftThruster->angle / M_PI;
+			inputs(9) = drone.rightThruster->thrust / 0.005;
+			inputs(10) = drone.rightThruster->angle /  M_PI;
 			Eigen::VectorXd output = Propagation::propagate(inputs, flightComputer);
-			drone.leftThruster->thrust = output(0);
-			drone.rightThruster->thrust = output(1);
-			drone.leftThruster->angle = output(2);
-			drone.rightThruster->angle = output(3);
+			double lt = output(0);
+			double la = output(1);
+			double rt = output(2);
+			double ra = output(3);
 
-			std::cout << "lThr: " << drone.leftThruster->thrust << " lAng: " << drone.leftThruster->angle
-					  << " rThr: " << drone.rightThruster->thrust << " rAng: " << drone.rightThruster->angle << "\n";
+			if(lt < 1.0 / 3.0){
+				drone.leftThruster->thrust -= 1e-4;
+			}
+			else if (lt > 2.0 / 3.0){
+				drone.leftThruster->thrust += 1e-4;
+			}
+
+			if(la < 1.0 / 3.0){
+				drone.leftThruster->angle -= 0.02;
+			}
+			else if (la > 2.0 / 3.0){
+				drone.leftThruster->angle += 0.02;
+			}
+
+			if(rt < 1.0 / 3.0){
+				drone.rightThruster->thrust -= 1e-4;
+			}
+			else if (rt > 2.0 / 3.0){
+				drone.rightThruster->thrust += 1e-4;
+			}
+
+			if(ra < 1.0 / 3.0){
+				drone.rightThruster->angle -= 0.02;
+			}
+			else if (ra > 2.0 / 3.0){
+				drone.rightThruster->angle += 0.02;
+			}
+
 		}
 
 		drone.applyForces(screenSize);
