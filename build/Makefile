@@ -123,32 +123,32 @@ NeuralNetwork/fast:
 	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/build
 .PHONY : NeuralNetwork/fast
 
-main.o: main.cpp.o
+mainBackProp.o: mainBackProp.cpp.o
 
-.PHONY : main.o
+.PHONY : mainBackProp.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/main.cpp.o
-.PHONY : main.cpp.o
+mainBackProp.cpp.o:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/mainBackProp.cpp.o
+.PHONY : mainBackProp.cpp.o
 
-main.i: main.cpp.i
+mainBackProp.i: mainBackProp.cpp.i
 
-.PHONY : main.i
+.PHONY : mainBackProp.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/main.cpp.i
-.PHONY : main.cpp.i
+mainBackProp.cpp.i:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/mainBackProp.cpp.i
+.PHONY : mainBackProp.cpp.i
 
-main.s: main.cpp.s
+mainBackProp.s: mainBackProp.cpp.s
 
-.PHONY : main.s
+.PHONY : mainBackProp.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/main.cpp.s
-.PHONY : main.cpp.s
+mainBackProp.cpp.s:
+	$(MAKE) -f CMakeFiles/NeuralNetwork.dir/build.make CMakeFiles/NeuralNetwork.dir/mainBackProp.cpp.s
+.PHONY : mainBackProp.cpp.s
 
 src/BackPropagation.o: src/BackPropagation.cpp.o
 
@@ -294,9 +294,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... NeuralNetwork"
 	@echo "... edit_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... mainBackProp.o"
+	@echo "... mainBackProp.i"
+	@echo "... mainBackProp.s"
 	@echo "... src/BackPropagation.o"
 	@echo "... src/BackPropagation.i"
 	@echo "... src/BackPropagation.s"
