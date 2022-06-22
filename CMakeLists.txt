@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10.2)
 project(NeuralNetwork)
 
 add_executable(${PROJECT_NAME}
-main.cpp
+mainBackProp.cpp
 src/Network.cpp
 src/Propagation.cpp
 src/BackPropagation.cpp

@@ -27,9 +27,14 @@ void Drone::computeThrust(Network flightComputer){
 }
 
 bool Drone::hitTarget(){
-	double minDist = 40;
+	if(recharge){
+		recharge--;
+		return false;
+	}
+	double minDist = 80;
 	if(abs(posX - target->posX) < minDist){
 		if(abs(posY - target->posY) < minDist){
+			recharge = 600;
 			return true;
 		}
 	}
@@ -37,8 +42,9 @@ bool Drone::hitTarget(){
 }
 
 void Drone::applyForces(int screenSize){
+	count++;
 	// apply force of gravity
-	velY -= 0.005;
+	velY -= 0.002;
 
 	// restrict thrust
 	if(leftThruster->thrust < 0){ leftThruster->thrust = 0; }
@@ -61,8 +67,8 @@ void Drone::applyForces(int screenSize){
 	velX += std::sin(rightThruster->angle  + angle) * rightThruster->thrust;
 
 	// apply thruster force to the angluar velocity
-	angularVel += 0.01 * std::cos(rightThruster->angle) * rightThruster->thrust;
-	angularVel -= 0.01 * std::cos(leftThruster->angle) * leftThruster->thrust;
+	angularVel += 0.002 * std::cos(rightThruster->angle) * rightThruster->thrust;
+	angularVel -= 0.002 * std::cos(leftThruster->angle) * leftThruster->thrust;
 
 	// apply velocity to position
 	posX += velX;
