@@ -7,6 +7,7 @@ To compile use the ./compile.sh script in the NeuralNetworks dir
 To run use the ./run.sh script in the NeuralNetworks dir
 
 Make sure to uncompress the zipped data files first
+in neural-networks-and-deep-learning-master/data dir
 
 The mainBackProp.cpp file is run with these scripts and shows an example
 of backpropagation used to train a neural network that can identify hand written
