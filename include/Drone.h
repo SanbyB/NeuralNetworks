@@ -29,22 +29,11 @@ public:
 	Drone();
 	~Drone();
 
-	/*
-	7 Inputs:
-	- target distance x
-	- target distance y
-	- velocity x
-	- velocity y
-	- cos(angle)
-	- sin(angle)
-	- angluar velocity
-	4 Outputs:
-	- thrust left
-	- thrust right
-	- thruster angle left
-	- thruster angle right
-	*/
-	// Network flightComputer;
+	int recharge = 0;
+
+	int count = 0;
+
+	int score = 0;
 
 	std::shared_ptr<Thruster> leftThruster = std::make_shared<Thruster>();
 
