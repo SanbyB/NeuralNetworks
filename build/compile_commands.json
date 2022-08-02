@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/ben/Desktop/Learning/NeuralNetworks/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -isystem /usr/local/include/eigen3  -g   -o CMakeFiles/NeuralNetwork.dir/mainBackProp.cpp.o -c /home/ben/Desktop/Learning/NeuralNetworks/mainBackProp.cpp",
+  "file": "/home/ben/Desktop/Learning/NeuralNetworks/mainBackProp.cpp"
+},
+{
+  "directory": "/home/ben/Desktop/Learning/NeuralNetworks/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -isystem /usr/local/include/eigen3  -g   -o CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o -c /home/ben/Desktop/Learning/NeuralNetworks/src/Network.cpp",
+  "file": "/home/ben/Desktop/Learning/NeuralNetworks/src/Network.cpp"
+},
+{
+  "directory": "/home/ben/Desktop/Learning/NeuralNetworks/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -isystem /usr/local/include/eigen3  -g   -o CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o -c /home/ben/Desktop/Learning/NeuralNetworks/src/Propagation.cpp",
+  "file": "/home/ben/Desktop/Learning/NeuralNetworks/src/Propagation.cpp"
+},
+{
+  "directory": "/home/ben/Desktop/Learning/NeuralNetworks/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -isystem /usr/local/include/eigen3  -g   -o CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.o -c /home/ben/Desktop/Learning/NeuralNetworks/src/BackPropagation.cpp",
+  "file": "/home/ben/Desktop/Learning/NeuralNetworks/src/BackPropagation.cpp"
+},
+{
+  "directory": "/home/ben/Desktop/Learning/NeuralNetworks/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -isystem /usr/local/include/eigen3  -g   -o CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o -c /home/ben/Desktop/Learning/NeuralNetworks/src/Drone.cpp",
+  "file": "/home/ben/Desktop/Learning/NeuralNetworks/src/Drone.cpp"
+},
+{
+  "directory": "/home/ben/Desktop/Learning/NeuralNetworks/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -isystem /usr/local/include/eigen3  -g   -o CMakeFiles/NeuralNetwork.dir/src/Target.cpp.o -c /home/ben/Desktop/Learning/NeuralNetworks/src/Target.cpp",
+  "file": "/home/ben/Desktop/Learning/NeuralNetworks/src/Target.cpp"
+},
+{
+  "directory": "/home/ben/Desktop/Learning/NeuralNetworks/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -isystem /usr/local/include/eigen3  -g   -o CMakeFiles/NeuralNetwork.dir/src/Utils.cpp.o -c /home/ben/Desktop/Learning/NeuralNetworks/src/Utils.cpp",
+  "file": "/home/ben/Desktop/Learning/NeuralNetworks/src/Utils.cpp"
+}
+]

@@ -9,6 +9,7 @@ src/Propagation.cpp
 src/BackPropagation.cpp
 src/Drone.cpp
 src/Target.cpp
+src/Utils.cpp
 )
 
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)

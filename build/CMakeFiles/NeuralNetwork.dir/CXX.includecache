@@ -38,6 +38,19 @@ Network.h
 
 /home/ben/Desktop/Learning/NeuralNetworks/include/Target.h
 
+<<<<<<< HEAD
+/home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
+Eigen/Dense
+/home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
+vector
+-
+iostream
+-
+fstream
+-
+
+=======
+>>>>>>> 9aa8e7d118ddd984d1fc122e18509aba01beaae6
 /home/ben/Desktop/Learning/NeuralNetworks/mainBackProp.cpp
 include/Network.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
@@ -45,6 +58,11 @@ include/Propagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
 include/BackPropagation.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+<<<<<<< HEAD
+include/Utils.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
+=======
+>>>>>>> 9aa8e7d118ddd984d1fc122e18509aba01beaae6
 iostream
 -
 fstream
@@ -83,6 +101,10 @@ time.h
 -
 cstdlib
 -
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/Utils.cpp
+../include/Utils.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
 
 /usr/local/include/eigen3/Eigen/Cholesky
 Core

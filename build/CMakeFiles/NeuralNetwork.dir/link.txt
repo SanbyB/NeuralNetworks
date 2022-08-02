@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+/usr/bin/x86_64-linux-gnu-g++-7  -g   CMakeFiles/NeuralNetwork.dir/mainBackProp.cpp.o CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.o CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o CMakeFiles/NeuralNetwork.dir/src/Target.cpp.o CMakeFiles/NeuralNetwork.dir/src/Utils.cpp.o  -o NeuralNetwork -lsfml-graphics -lsfml-window -lsfml-system 
+=======
 /usr/bin/x86_64-linux-gnu-g++-7     CMakeFiles/NeuralNetwork.dir/mainBackProp.cpp.o CMakeFiles/NeuralNetwork.dir/src/Network.cpp.o CMakeFiles/NeuralNetwork.dir/src/Propagation.cpp.o CMakeFiles/NeuralNetwork.dir/src/BackPropagation.cpp.o CMakeFiles/NeuralNetwork.dir/src/Drone.cpp.o CMakeFiles/NeuralNetwork.dir/src/Target.cpp.o  -o NeuralNetwork -lsfml-graphics -lsfml-window -lsfml-system 
+>>>>>>> 9aa8e7d118ddd984d1fc122e18509aba01beaae6
