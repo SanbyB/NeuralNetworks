@@ -89,8 +89,13 @@ void Drone::applyForces(int screenSize){
 
 void Drone::terminalVelocity(){
 	if(velX * velX + velY * velY > terminalVel){
-		double k = velY / velX;
-		velX = sign(velX) * std::sqrt(terminalVel / (1 + k));
-		velY = sign(velY) * std::sqrt(terminalVel - velX); 
+		if(velX){
+			double k = std::abs(velY / velX);
+			velX = sign(velX) * std::sqrt(terminalVel / (1 + k));
+			velY = sign(velY) * std::sqrt(terminalVel - velX);
+		}else{
+			velX = 0;
+			velY = std::sqrt(terminalVel);
+		}
 	}
 }

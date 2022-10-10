@@ -31,12 +31,12 @@ public:
 	~Drone();
 
 	// Configs
-	double maxThrust = 0.005;
-	double gravity = 0.001;
-	double inertia = 0.002;
+	double maxThrust = 0.0005;
+	double gravity = 0.0002;
+	double inertia = 0.0005;
 	int rechargeTime = 600;
 	double minDist = 80;
-	double terminalVel = 2;
+	double terminalVel = 0.5;
 
 	// Timing variables
 	int recharge = 0;

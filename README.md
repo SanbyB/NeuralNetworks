@@ -19,3 +19,4 @@ principles in python.
 # TODO
 Need to add a script to install Graphic lib and eigen, also might as well unzip the CSVs
 Need to add if statements to the CMake to be able to compile different main files
+Idea for the drone, go down to 1 thruster and  get rid of gravity to make it 2d car sim
