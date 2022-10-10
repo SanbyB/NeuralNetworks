@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Genetic.dir/mainGeneticLearning.cpp.o CMakeFiles/Genetic.dir/src/Network.cpp.o CMakeFiles/Genetic.dir/src/Propagation.cpp.o CMakeFiles/Genetic.dir/src/BackPropagation.cpp.o CMakeFiles/Genetic.dir/src/Drone.cpp.o CMakeFiles/Genetic.dir/src/Target.cpp.o CMakeFiles/Genetic.dir/src/Utils.cpp.o -o Genetic  -lsfml-graphics -lsfml-window -lsfml-system 

@@ -31,10 +31,9 @@ bool Drone::hitTarget(){
 		recharge--;
 		return false;
 	}
-	double minDist = 80;
 	if(abs(posX - target->posX) < minDist){
 		if(abs(posY - target->posY) < minDist){
-			recharge = 600;
+			recharge = rechargeTime;
 			return true;
 		}
 	}
@@ -42,15 +41,16 @@ bool Drone::hitTarget(){
 }
 
 void Drone::applyForces(int screenSize){
+	std::cout << "Velocity: " << velX << ", " << velY << "\n";
 	count++;
 	// apply force of gravity
-	velY -= 0.002;
+	velY -= gravity;
 
 	// restrict thrust
 	if(leftThruster->thrust < 0){ leftThruster->thrust = 0; }
-	else if(leftThruster->thrust > 0.005){ leftThruster->thrust = 0.005; }
+	else if(leftThruster->thrust > maxThrust){ leftThruster->thrust = maxThrust; }
 	if(rightThruster->thrust < 0){ rightThruster->thrust = 0; }
-	else if(rightThruster->thrust > 0.005){ rightThruster->thrust = 0.005; }
+	else if(rightThruster->thrust > maxThrust){ rightThruster->thrust = maxThrust; }
 
 	// restrict angle (for normalisation)
 	if(leftThruster->angle < -M_PI){ leftThruster->angle = M_PI; }
@@ -67,8 +67,10 @@ void Drone::applyForces(int screenSize){
 	velX += std::sin(rightThruster->angle  + angle) * rightThruster->thrust;
 
 	// apply thruster force to the angluar velocity
-	angularVel += 0.002 * std::cos(rightThruster->angle) * rightThruster->thrust;
-	angularVel -= 0.002 * std::cos(leftThruster->angle) * leftThruster->thrust;
+	angularVel += inertia * std::cos(rightThruster->angle) * rightThruster->thrust;
+	angularVel -= inertia * std::cos(leftThruster->angle) * leftThruster->thrust;
+
+	terminalVelocity();
 
 	// apply velocity to position
 	posX += velX;
@@ -83,4 +85,12 @@ void Drone::applyForces(int screenSize){
 	if(posY < -screenSize / 2){ posY = -screenSize / 2; velY = 0; }
 	if(posY > screenSize / 2){ posY = screenSize / 2; velY = 0; }
 
+}
+
+void Drone::terminalVelocity(){
+	if(velX * velX + velY * velY > terminalVel){
+		double k = velY / velX;
+		velX = sign(velX) * std::sqrt(terminalVel / (1 + k));
+		velY = sign(velY) * std::sqrt(terminalVel - velX); 
+	}
 }

@@ -1,3 +1,3 @@
 #! /bin/sh
 
-cd build; ./NeuralNetwork
+cd build; ./Genetic

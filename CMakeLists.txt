@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10.2)
 
-project(NeuralNetwork)
+project(Genetic)
 
 add_executable(${PROJECT_NAME}
-mainBackProp.cpp
+mainGeneticLearning.cpp
 src/Network.cpp
 src/Propagation.cpp
 src/BackPropagation.cpp

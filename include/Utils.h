@@ -22,3 +22,6 @@ Eigen::VectorXd toEigen(std::vector<double> vec);
 void readData(std::vector<std::vector<double>>& data, std::string path);
 
 void readAns(std::vector<double>& ans, std::string path);
+
+int sign(double num);
+

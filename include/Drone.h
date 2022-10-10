@@ -1,6 +1,7 @@
 #pragma once
 #include "Network.h"
 #include "Target.h"
+#include "Utils.h"
 #include <memory>
 
 class Thruster{
@@ -29,10 +30,17 @@ public:
 	Drone();
 	~Drone();
 
+	// Configs
+	double maxThrust = 0.005;
+	double gravity = 0.001;
+	double inertia = 0.002;
+	int rechargeTime = 600;
+	double minDist = 80;
+	double terminalVel = 2;
+
+	// Timing variables
 	int recharge = 0;
-
 	int count = 0;
-
 	int score = 0;
 
 	std::shared_ptr<Thruster> leftThruster = std::make_shared<Thruster>();
@@ -70,6 +78,10 @@ public:
 
 	// checks if the target has been hit, returns true if it has
 	bool hitTarget();
+
+private:
+
+	void terminalVelocity();
 
 };
 

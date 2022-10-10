@@ -1,11 +1,12 @@
 #include "include/Drone.h"
 #include "include/Target.h"
+#include "include/Propagation.h"
 #include <memory>
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
 
-Visual constants
+//Visual constants
 
 int screenSize = 800;
 

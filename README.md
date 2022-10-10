@@ -14,3 +14,8 @@ of backpropagation used to train a neural network that can identify hand written
 digits. The data used can be found from the MNIST dataset, and the project follows
 http://neuralnetworksanddeeplearning.com/chap1.html which implements the same
 principles in python.
+
+
+# TODO
+Need to add a script to install Graphic lib and eigen, also might as well unzip the CSVs
+Need to add if statements to the CMake to be able to compile different main files
