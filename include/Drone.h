@@ -31,10 +31,10 @@ public:
 	~Drone();
 
 	// Configs
-	double maxThrust = 0.0005;
-	double gravity = 0.0002;
-	double inertia = 0.0005;
-	int rechargeTime = 600;
+	double maxThrust = 0.015;
+	// double gravity = 0.0002;
+	// double inertia = 0.0005;
+	int rechargeTime = 100;
 	double minDist = 80;
 	double terminalVel = 0.5;
 
@@ -43,9 +43,7 @@ public:
 	int count = 0;
 	int score = 0;
 
-	std::shared_ptr<Thruster> leftThruster = std::make_shared<Thruster>();
-
-	std::shared_ptr<Thruster> rightThruster = std::make_shared<Thruster>();
+	std::shared_ptr<Thruster> thruster = std::make_shared<Thruster>();
 
 	// current position of the drone
 	double posX = 0;
@@ -56,10 +54,10 @@ public:
 	double velY = 0;
 
 	// current angle of the drone (rad, counterclockwise convention)
-	double angle = 0;
+	// double angle = 0;
 
 	// current angular velocity (rad, counterclockwise convention)
-	double angularVel = 0;
+	// double angularVel = 0;
 
 	// drones target
 	std::shared_ptr<Target> target;

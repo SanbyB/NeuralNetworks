@@ -6,24 +6,22 @@ Drone::Drone(){}
 Drone::~Drone(){}
 
 void Drone::computeThrust(Network flightComputer){
-	Eigen::VectorXd input(7);
+	Eigen::VectorXd input(4);
 
 	input(0) = posX - target->posX;
 	input(1) = posY - target->posY;
 	input(2) = velX;
 	input(3) = velY;
-	input(4) = std::cos(angle);
-	input(5) = std::sin(angle);
-	input(6) = angularVel;
+	// input(4) = std::cos(angle);
+	// input(5) = std::sin(angle);
+	// input(6) = angularVel;
 
-	Eigen::VectorXd output(4);
+	Eigen::VectorXd output(2);
 
 	output = Propagation::propagate(input, flightComputer);
 
-	leftThruster->thrust = output(0);
-	rightThruster->thrust = output(1);
-	leftThruster->angle = output(2);
-	rightThruster->angle = output(3);
+	thruster->thrust = output(0);
+	thruster->angle = output(1);
 }
 
 bool Drone::hitTarget(){
@@ -41,43 +39,34 @@ bool Drone::hitTarget(){
 }
 
 void Drone::applyForces(int screenSize){
-	std::cout << "Velocity: " << velX << ", " << velY << "\n";
+	// std::cout << "Velocity: " << velX << ", " << velY << "\n";
 	count++;
 	// apply force of gravity
-	velY -= gravity;
+	// velY -= gravity;
 
 	// restrict thrust
-	if(leftThruster->thrust < 0){ leftThruster->thrust = 0; }
-	else if(leftThruster->thrust > maxThrust){ leftThruster->thrust = maxThrust; }
-	if(rightThruster->thrust < 0){ rightThruster->thrust = 0; }
-	else if(rightThruster->thrust > maxThrust){ rightThruster->thrust = maxThrust; }
+	if(thruster->thrust < 0){ thruster->thrust = 0; }
+	else if(thruster->thrust > maxThrust){ thruster->thrust = maxThrust; }
 
 	// restrict angle (for normalisation)
-	if(leftThruster->angle < -M_PI){ leftThruster->angle = M_PI; }
-	else if(leftThruster-> angle > M_PI){ leftThruster->angle = -M_PI; }
-	if(rightThruster->angle < -M_PI){ rightThruster->angle = M_PI; }
-	else if (rightThruster->angle > M_PI){ rightThruster->angle = -M_PI; }
+	if(thruster->angle < -M_PI){ thruster->angle = M_PI; }
+	else if(thruster-> angle > M_PI){ thruster->angle = -M_PI; }
 
 
 	// apply thruster force in the Y direction
-	velY += std::cos(leftThruster->angle + angle) * leftThruster->thrust;
-	velY += std::cos(rightThruster->angle + angle) * rightThruster->thrust;
+	velY += std::cos(thruster->angle) * thruster->thrust;
 	//  apply thruster force in the X direction
-	velX += std::sin(leftThruster->angle + angle) * leftThruster->thrust;
-	velX += std::sin(rightThruster->angle  + angle) * rightThruster->thrust;
+	velX += std::sin(thruster->angle) * thruster->thrust;
 
 	// apply thruster force to the angluar velocity
-	angularVel += inertia * std::cos(rightThruster->angle) * rightThruster->thrust;
-	angularVel -= inertia * std::cos(leftThruster->angle) * leftThruster->thrust;
+	// angularVel += inertia * std::cos(rightThruster->angle) * rightThruster->thrust;
+	// angularVel -= inertia * std::cos(thruster->angle) * thruster->thrust;
 
 	terminalVelocity();
 
 	// apply velocity to position
 	posX += velX;
 	posY += velY;
-
-	// apply angular vel to angle
-	angle += angularVel;
 
 	// apply wall forces
 	if(posX < -screenSize / 2){ posX = -screenSize / 2; velX = 0; }
@@ -88,14 +77,6 @@ void Drone::applyForces(int screenSize){
 }
 
 void Drone::terminalVelocity(){
-	if(velX * velX + velY * velY > terminalVel){
-		if(velX){
-			double k = std::abs(velY / velX);
-			velX = sign(velX) * std::sqrt(terminalVel / (1 + k));
-			velY = sign(velY) * std::sqrt(terminalVel - velX);
-		}else{
-			velX = 0;
-			velY = std::sqrt(terminalVel);
-		}
-	}
+	velX = velX * 0.99;
+	velY = velY * 0.99;
 }
