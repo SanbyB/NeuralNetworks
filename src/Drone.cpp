@@ -3,25 +3,21 @@
 #include <iostream>
 
 Drone::Drone(){}
-Drone::~Drone(){}
 
-void Drone::computeThrust(Network flightComputer){
-	Eigen::VectorXd input(4);
+void init(int s, std::shared_ptr<Target> t){
+	screenSize(s);
+	target(t);
+}
 
-	input(0) = posX - target->posX;
-	input(1) = posY - target->posY;
-	input(2) = velX;
-	input(3) = velY;
-	// input(4) = std::cos(angle);
-	// input(5) = std::sin(angle);
-	// input(6) = angularVel;
-
-	Eigen::VectorXd output(2);
-
-	output = Propagation::propagate(input, flightComputer);
-
-	thruster->thrust = output(0);
-	thruster->angle = output(1);
+void Drone::update(bool humanControl, bool w, bool a, bool d){
+	hitTarget();
+	applyForces();
+	if(humanControl){
+		if(w){ thruster->thrust += 5e-4; }
+		else{ thruster->thrust -= 1e-4; }
+		if(a){ thruster->angle += 0.01; }
+		if(d){ thruster->angle -= 0.01; }
+	}
 }
 
 bool Drone::hitTarget(){
@@ -32,17 +28,16 @@ bool Drone::hitTarget(){
 	if(abs(posX - target->posX) < minDist){
 		if(abs(posY - target->posY) < minDist){
 			recharge = rechargeTime;
+			target->spawnTarget();
+			score++;
 			return true;
 		}
 	}
 	return false;
 }
 
-void Drone::applyForces(int screenSize){
-	// std::cout << "Velocity: " << velX << ", " << velY << "\n";
+void Drone::applyForces(){
 	count++;
-	// apply force of gravity
-	// velY -= gravity;
 
 	// restrict thrust
 	if(thruster->thrust < 0){ thruster->thrust = 0; }
@@ -57,10 +52,6 @@ void Drone::applyForces(int screenSize){
 	velY += std::cos(thruster->angle) * thruster->thrust;
 	//  apply thruster force in the X direction
 	velX += std::sin(thruster->angle) * thruster->thrust;
-
-	// apply thruster force to the angluar velocity
-	// angularVel += inertia * std::cos(rightThruster->angle) * rightThruster->thrust;
-	// angularVel -= inertia * std::cos(thruster->angle) * thruster->thrust;
 
 	terminalVelocity();
 
@@ -77,6 +68,38 @@ void Drone::applyForces(int screenSize){
 }
 
 void Drone::terminalVelocity(){
-	velX = velX * 0.99;
-	velY = velY * 0.99;
+	velX = velX * terminalVel;
+	velY = velY * terminalVel;
+}
+
+void Drone::target(std::shared_ptr<Target> t){
+	target = t;
+}
+
+void Drone::screenSize(int s){
+	screenSize = s;
+}
+
+
+AutoDrone::AutoDrone(){}
+
+void AutoDrone::flightComputer(Network fc){
+	// TODO need to restrict it to make sure it has the right input and output nodes
+	flightComputer = fc;
+}
+
+void AutoDrone::computeThrust(){
+	Eigen::VectorXd input(4);
+
+	input(0) = posX - target->posX;
+	input(1) = posY - target->posY;
+	input(2) = velX;
+	input(3) = velY;
+
+	Eigen::VectorXd output(2);
+
+	output = Propagation::propagate(input, flightComputer);
+
+	thruster->thrust = output(0);
+	thruster->angle = output(1);
 }

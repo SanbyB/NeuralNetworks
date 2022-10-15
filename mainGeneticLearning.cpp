@@ -1,6 +1,7 @@
 #include "include/Drone.h"
 #include "include/Target.h"
 #include "include/Propagation.h"
+#include "include/Actions.h"
 #include <memory>
 #include <iostream>
 
@@ -30,14 +31,13 @@ int main(){
 
 		target->initTarget(screenSize);
 
-		drone.target = target;
+		drone.init(screenSize, target);
 
 
 		sf::RenderWindow window(sf::VideoMode(screenSize, screenSize), "Drone simulation!");
 		window.setFramerateLimit(200);
 
 		// Drone graphics
-
 		sf::CircleShape droneShape(droneSize);
 		sf::RectangleShape thrShape(sf::Vector2f(thrusterWidth, thrusterHeight));
 
@@ -45,7 +45,6 @@ int main(){
 		sf::CircleShape targetShape(5);
 
 		// init graphics
-
 		sf::Vector2f droneOrigin(screenSize/2, screenSize/2);
 		sf::Vector2f tPos(target->posX, target->posY);
 
@@ -62,9 +61,7 @@ int main(){
 		targetShape.setPosition(droneOrigin - tPos);
 
 		// Player input
-
 		bool w = false;
-		bool s = false;
 		bool a = false;
 		bool d = false;
 
@@ -80,31 +77,12 @@ int main(){
 					std::cout << drone.score <<  "\n";
 					window.close();
 				}
-
 				if(humanControl){
-					// key pressed
-					if(event.type == sf::Event::KeyPressed){
-						if(event.key.code == sf::Keyboard::W){ w = true; }
-						if(event.key.code == sf::Keyboard::S){ s = true; }
-						if(event.key.code == sf::Keyboard::A){ a = true; }
-						if(event.key.code == sf::Keyboard::D){ d = true; }
-					}
-					// key released
-					if(event.type == sf::Event::KeyReleased){
-						if(event.key.code == sf::Keyboard::W){ w = false; }
-						if(event.key.code == sf::Keyboard::S){ s = false; }
-						if(event.key.code == sf::Keyboard::A){ a = false; }
-						if(event.key.code == sf::Keyboard::D){ d = false; }
-					}
+					Actions::keyPressed(w, a, d);
 				}
 			}
-			if(humanControl){
-				if(w){ drone.thruster->thrust += 5e-4; }
-				else{ drone.thruster->thrust -= 1e-4; }
-				if(a){ drone.thruster->angle += 0.01; }
-				if(d){ drone.thruster->angle -= 0.01; }
-			}
-			else{
+			drone.update(humanControl, w, a, d);
+			// if(!humanControl){
 				//TODO this is supposed to be part of the compute thrust function in th drone class
 				/*
 				11 Inputs:
@@ -160,11 +138,7 @@ int main(){
 				// 	drone.thruster->angle += 0.02;
 				// }
 
-			}
-
-			// std::cout << drone.score << "\n";
-
-			drone.applyForces(screenSize);
+			// }
 
 			droneShape.setPosition(droneOrigin - sf::Vector2f(drone.posX, drone.posY));
 			// droneShape.setRotation(-drone.angle * 180 / M_PI);
@@ -173,10 +147,7 @@ int main(){
 
 			thrShape.setRotation((-drone.thruster->angle) * 180 / M_PI);
 
-			if(drone.hitTarget()){
-				target->spawnTarget();
-				drone.score++;
-			}
+
 
 			tPos = sf::Vector2f(target->posX, target->posY);
 			targetShape.setPosition(droneOrigin - tPos);
