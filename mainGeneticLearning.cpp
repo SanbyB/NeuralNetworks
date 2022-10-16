@@ -74,11 +74,10 @@ int main(){
 			{
 				// close window
 				if (event.type == sf::Event::Closed){
-					std::cout << drone.score <<  "\n";
 					window.close();
 				}
 				if(humanControl){
-					Actions::keyPressed(w, a, d);
+					Actions::keyPressed(event, w, a, d);
 				}
 			}
 			drone.update(humanControl, w, a, d);
@@ -140,12 +139,11 @@ int main(){
 
 			// }
 
-			droneShape.setPosition(droneOrigin - sf::Vector2f(drone.posX, drone.posY));
-			// droneShape.setRotation(-drone.angle * 180 / M_PI);
+			droneShape.setPosition(droneOrigin - sf::Vector2f(drone.pos()[0], drone.pos()[1]));
 
 			thrShape.setPosition(droneShape.getPosition() + sf::Vector2f(thrusterHeight/2, thrusterHeight/2));
 
-			thrShape.setRotation((-drone.thruster->angle) * 180 / M_PI);
+			thrShape.setRotation((-drone.angle()) * 180 / M_PI);
 
 
 

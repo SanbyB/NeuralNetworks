@@ -4,7 +4,7 @@
 
 Actions::Actions(){}
 
-void Actions::keyPressed(bool &w, bool &a, bool &d){
+void Actions::keyPressed(sf::Event event, bool &w, bool &a, bool &d){
 	if(event.type == sf::Event::KeyPressed){
 		switch (event.key.code){
 		case sf::Keyboard::W : w = true; break;

@@ -150,6 +150,33 @@ mainGeneticLearning.cpp.s:
 	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/mainGeneticLearning.cpp.s
 .PHONY : mainGeneticLearning.cpp.s
 
+src/Actions.o: src/Actions.cpp.o
+
+.PHONY : src/Actions.o
+
+# target to build an object file
+src/Actions.cpp.o:
+	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Actions.cpp.o
+.PHONY : src/Actions.cpp.o
+
+src/Actions.i: src/Actions.cpp.i
+
+.PHONY : src/Actions.i
+
+# target to preprocess a source file
+src/Actions.cpp.i:
+	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Actions.cpp.i
+.PHONY : src/Actions.cpp.i
+
+src/Actions.s: src/Actions.cpp.s
+
+.PHONY : src/Actions.s
+
+# target to generate assembly for a file
+src/Actions.cpp.s:
+	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Actions.cpp.s
+.PHONY : src/Actions.cpp.s
+
 src/BackPropagation.o: src/BackPropagation.cpp.o
 
 .PHONY : src/BackPropagation.o
@@ -324,6 +351,9 @@ help:
 	@echo "... mainGeneticLearning.o"
 	@echo "... mainGeneticLearning.i"
 	@echo "... mainGeneticLearning.s"
+	@echo "... src/Actions.o"
+	@echo "... src/Actions.i"
+	@echo "... src/Actions.s"
 	@echo "... src/BackPropagation.o"
 	@echo "... src/BackPropagation.i"
 	@echo "... src/BackPropagation.s"

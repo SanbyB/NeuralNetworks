@@ -9,19 +9,28 @@ class Thruster{
 public:
 
 	Thruster(){
-		thrust = 0;
-		angle = 0;
+		thrustVal = 0;
+		angleVal = 0;
 	}
+
+	// getters and setters for the thrust and angle
+	void thrust(double t);
+
+	double thrust();
+
+	void angle(double a);
+
+	double angle();
 
 private:
 
 	// thrust value between 0-10,corresponds to acceleration
-	double thrust;
+	double thrustVal;
 
 	/*  angle (in radians) the thuster makes with the drone body,
 	 0 is upright, counterclockwise convention
 	*/
-	double angle;
+	double angleVal;
 
 };
 
@@ -35,6 +44,29 @@ public:
 	void update(bool humanControl, bool w, bool a, bool d);
 
 	void init(int screenSize, std::shared_ptr<Target> t);
+
+	// returns x, y position of the drone
+	std::vector<double> pos();
+
+	// getters for the thrusters thrust and angle
+	double thrust();
+
+	double  angle();
+
+protected:
+
+	// current position of the drone
+	double posX = 0;
+	double posY = 0;
+
+	// current velocity of the drone
+	double velX = 0;
+	double velY = 0;
+
+	std::shared_ptr<Thruster> thruster = std::make_shared<Thruster>();
+
+	// drones target
+	std::shared_ptr<Target> target;
 
 private:
 	// Configs
@@ -51,27 +83,14 @@ private:
 	// Slow the movement
 	void terminalVelocity();
 
-	// current position of the drone
-	double posX = 0;
-	double posY = 0;
-
-	// current velocity of the drone
-	double velX = 0;
-	double velY = 0;
-
-	std::shared_ptr<Thruster> thruster = std::make_shared<Thruster>();
-
-	// drones target
-	std::shared_ptr<Target> target;
-
 	// sets target
-	void target(std::shared_ptr<Target> t);
+	void setTarget(std::shared_ptr<Target> t);
 
 	// size of the screen the done can operate on
 	int screenSize;
 
 	// sets screenSize
-	void screenSize(int s);
+	void setScreenSize(int s);
 
 
 	/*
@@ -93,7 +112,7 @@ public:
 	AutoDrone();
 
 	// set the flight computer
-	void flightComputer(Network fc);
+	void setFlightComputer(Network fc);
 
 	// Propagates the current spatial properties through the flightComputer
 	void computeThrust();

@@ -5,6 +5,6 @@ class Actions{
 public:
 	Actions();
 
-	static void keyPressed(bool &w, bool &a, bool &d);
+	static void keyPressed(sf::Event event, bool &w, bool &a, bool &d);
 
 };
