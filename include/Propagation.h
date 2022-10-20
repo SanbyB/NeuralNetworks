@@ -22,7 +22,8 @@ public:
 	static Eigen::MatrixXd propagate(Eigen::MatrixXd activations, Eigen::MatrixXd weights, Eigen::MatrixXd biases);
 
 	/* takes activations of the first layer
-	and propagates through the entire network*/
+	and propagates through the entire network,
+	the returned activations are normalised*/
 	static Eigen::MatrixXd propagate(Eigen::MatrixXd activations, Network net);
 
 };

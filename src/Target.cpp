@@ -16,3 +16,11 @@ void Target::spawnTarget(){
 	posX = (rand() % screenSize) - (screenSize / 2);
 	posY = (rand() % screenSize) - (screenSize / 2);
 }
+
+double Target::getPosX(){
+	return posX;
+}
+
+double Target::getPosY(){
+	return posY;
+}

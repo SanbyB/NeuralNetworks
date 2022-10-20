@@ -16,16 +16,14 @@ int droneSize = 20;
 int thrusterWidth = 8;
 int thrusterHeight = 20;
 
-bool humanControl = true;
-bool gui = true;
+bool humanControl = false;
+bool gui = false;
 
 
 int main(){
 	if(gui){
-
-		Drone drone = Drone();
-
-		Network flightComputer = Network({11, 40, 50, 40, 4});
+		// TODO want to change this
+		AutoDrone drone = AutoDrone();
 
 		auto target = std::make_shared<Target>();
 
@@ -46,7 +44,7 @@ int main(){
 
 		// init graphics
 		sf::Vector2f droneOrigin(screenSize/2, screenSize/2);
-		sf::Vector2f tPos(target->posX, target->posY);
+		sf::Vector2f tPos(target->getPosX(), target->getPosY());
 
 		droneShape.setFillColor(sf::Color::White);
 		droneShape.setOrigin(sf::Vector2f(droneSize/2, droneSize/2));
@@ -75,69 +73,25 @@ int main(){
 				// close window
 				if (event.type == sf::Event::Closed){
 					window.close();
+					Network fc = drone.getFlightComputer();
+					std::cout << "weights\n";
+					for(int i = 0; i < fc.numLayers - 1; i++){
+						std::cout << fc.weights.at(i) << "\n";
+					}
+					std::cout << "biases\n";
+					for(int i = 0; i < fc.numLayers - 1; i++){
+						std::cout << fc.biases.at(i) << "\n";
+					}
 				}
 				if(humanControl){
 					Actions::keyPressed(event, w, a, d);
 				}
 			}
-			drone.update(humanControl, w, a, d);
-			// if(!humanControl){
-				//TODO this is supposed to be part of the compute thrust function in th drone class
-				/*
-				11 Inputs:
-				- target distance x
-				- target distance y
-				- velocity x
-				- velocity y
-				- cos(angle)
-				- sin(angle)
-				- angular velocity
-				- left thruster thrust
-				- left thruster angle
-				- right thruster thrust
-				- right thruster angle
-				4 Outputs:
-				- thrust left
-				- thrust right
-				- thruster angle left
-				- thruster angle right
-				*/
-				// double distX = drone.posX - target->posX;
-				// double distY = drone.posY - target->posY;
-				// Eigen::VectorXd inputs(11);
-				// // TODO better noramlisation
-				// inputs(0) = distX / screenSize;
-				// inputs(1) = distY / screenSize;
-				// inputs(2) = drone.velX / 5;
-				// inputs(3) = drone.velY / 5;
-				// inputs(4) = std::cos(drone.angle);
-				// inputs(5) = std::sin(drone.angle);
-				// inputs(6) = drone.angularVel * 10;
-				// inputs(7) = drone.thruster->thrust / 0.005; // TODO change this to a config
-				// inputs(8) = drone.thruster->angle / M_PI;
-				// inputs(9) = drone.rightThruster->thrust / 0.005;
-				// inputs(10) = drone.rightThruster->angle /  M_PI;
-				// Eigen::VectorXd output = Propagation::propagate(inputs, flightComputer);
-				// double lt = output(0);
-				// double la = output(1);
-				// double rt = output(2);
-				// double ra = output(3);
-
-				// if(lt < 10.0 / 24.0){
-				// 	drone.thruster->thrust -= 1e-4;
-				// }
-				// else if (lt > 14.0 / 24.0){
-				// 	drone.thruster->thrust += 1e-4;
-				// }
-
-				// if(la < 1.0 / 3.0){
-				// 	drone.thruster->angle -= 0.02;
-				// }
-				// else if (la > 2.0 / 3.0){
-				// 	drone.thruster->angle += 0.02;
-				// }
-
-			// }
+			if(humanControl){
+				drone.update(w, a, d);
+			}else{
+				drone.computeThrust();
+			}
 
 			droneShape.setPosition(droneOrigin - sf::Vector2f(drone.pos()[0], drone.pos()[1]));
 
@@ -147,7 +101,7 @@ int main(){
 
 
 
-			tPos = sf::Vector2f(target->posX, target->posY);
+			tPos = sf::Vector2f(target->getPosX(), target->getPosY());
 			targetShape.setPosition(droneOrigin - tPos);
 
 			window.clear();
@@ -159,126 +113,50 @@ int main(){
 
 	}
 	else{
-		// Drone drone = Drone();
 
-		// auto target = std::make_shared<Target>();
+		AutoDrone drone = AutoDrone();
 
-		// target->initTarget(screenSize);
+		auto target = std::make_shared<Target>();
 
-		// drone.target = target;
+		target->initTarget(screenSize);
 
-		// std::vector<Network> flightComps;
-		// std::vector<int> scores;
+		drone.init(screenSize, target);
 
-		// for(int i = 0; i < 10000; i++){
+		std::vector<Network> flightComps;
+		std::vector<int> scores;
 
-		// 	Network flightComputer = Network({11, 40, 50, 40, 4});
+		for(int i = 0; i < 10000; i++){
 
+			while (drone.getCount() < 100000){
+				drone.computeThrust();
+			}
 
+			// TODO tidy this up pls
+			if(flightComps.size() < 5){
+				flightComps.push_back(drone.getFlightComputer());
+				scores.push_back(drone.getScore());
+			}
+			else{
+				int min = 2000;
+				int mindex;
+				for(int i; i < 5; i++){
+					int prev = min;
+					min = std::min(scores.at(i), min);
+					if(min < prev){
+						mindex = i;
+					}
+				}
+				if(drone.getScore() > min){
+					flightComps.at(mindex) = drone.getFlightComputer();
+					scores.at(mindex) = drone.getScore();
+				}
+			}
 
-		// 	while (drone.count < 100000){
-		// 		/*
-		// 		11 Inputs:
-		// 		- target distance x
-		// 		- target distance y
-		// 		- velocity x
-		// 		- velocity y
-		// 		- cos(angle)
-		// 		- sin(angle)
-		// 		- angular velocity
-		// 		- left thruster thrust
-		// 		- left thruster angle
-		// 		- right thruster thrust
-		// 		- right thruster angle
-		// 		4 Outputs:
-		// 		- thrust left
-		// 		- thrust right
-		// 		- thruster angle left
-		// 		- thruster angle right
-		// 		*/
-		// 		double distX = drone.posX - target->posX;
-		// 		double distY = drone.posY - target->posY;
-		// 		Eigen::VectorXd inputs(11);
-		// 		// TODO better noramlisation
-		// 		inputs(0) = distX / screenSize;
-		// 		inputs(1) = distY / screenSize;
-		// 		inputs(2) = drone.velX / 5;
-		// 		inputs(3) = drone.velY / 5;
-		// 		inputs(4) = std::cos(drone.angle);
-		// 		inputs(5) = std::sin(drone.angle);
-		// 		inputs(6) = drone.angularVel * 10;
-		// 		inputs(7) = drone.thruster->thrust / 0.005; // TODO change this to a config
-		// 		inputs(8) = drone.thruster->angle / M_PI;
-		// 		inputs(9) = drone.rightThruster->thrust / 0.005;
-		// 		inputs(10) = drone.rightThruster->angle /  M_PI;
-		// 		Eigen::VectorXd output = Propagation::propagate(inputs, flightComputer);
-		// 		double lt = output(0);
-		// 		double la = output(1);
-		// 		double rt = output(2);
-		// 		double ra = output(3);
+		}
 
-		// 		if(lt < 10.0 / 24.0){
-		// 			drone.thruster->thrust -= 1e-4;
-		// 		}
-		// 		else if (lt > 14.0 / 24.0){
-		// 			drone.thruster->thrust += 1e-4;
-		// 		}
-
-		// 		if(la < 1.0 / 3.0){
-		// 			drone.thruster->angle -= 0.02;
-		// 		}
-		// 		else if (la > 2.0 / 3.0){
-		// 			drone.thruster->angle += 0.02;
-		// 		}
-
-		// 		if(rt < 10.0 / 24.0){
-		// 			drone.rightThruster->thrust -= 1e-4;
-		// 		}
-		// 		else if (rt > 14.0 / 24.0){
-		// 			drone.rightThruster->thrust += 1e-4;
-		// 		}
-
-		// 		if(ra < 1.0 / 3.0){
-		// 			drone.rightThruster->angle -= 0.02;
-		// 		}
-		// 		else if (ra > 2.0 / 3.0){
-		// 			drone.rightThruster->angle += 0.02;
-		// 		}
-		// 		drone.applyForces(screenSize);
-
-		// 	}
-
-		// 	if(drone.hitTarget()){
-		// 		target->spawnTarget();
-		// 		drone.score++;
-		// 	}
-
-
-		// 	if(flightComps.size() < 5){
-		// 		flightComps.push_back(flightComputer);
-		// 		scores.push_back(drone.score);
-		// 	}
-		// 	else{
-		// 		int min = 2000;
-		// 		int mindex;
-		// 		for(int i; i < 5; i++){
-		// 			int prev = min;
-		// 			min = std::min(scores.at(i), min);
-		// 			if(min < prev){
-		// 				mindex = i;
-		// 			}
-		// 		}
-		// 		if(drone.score > min){
-		// 			flightComps.at(mindex) = flightComputer;
-		// 			scores.at(mindex) = drone.score;
-		// 		}
-		// 	}
-
-		// }
-
-		// for(int i : scores){
-		// 	std::cout << "score: " << i <<  "\n";
-		// }
+		for(int i : scores){
+			std::cout << "score: " << i <<  "\n";
+		}
 
 	}
 

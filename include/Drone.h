@@ -41,7 +41,7 @@ public:
 	Drone();
 
 	// called each game loop
-	void update(bool humanControl, bool w, bool a, bool d);
+	void update(bool w, bool a, bool d);
 
 	void init(int screenSize, std::shared_ptr<Target> t);
 
@@ -51,9 +51,17 @@ public:
 	// getters for the thrusters thrust and angle
 	double thrust();
 
-	double  angle();
+	double angle();
+
+	// get count
+	int getCount();
+
+	// returns the score
+	int getScore();
 
 protected:
+	// size of the screen the done can operate on
+		int screenSize;
 
 	// current position of the drone
 	double posX = 0;
@@ -63,14 +71,18 @@ protected:
 	double velX = 0;
 	double velY = 0;
 
+	// Configs
+	double maxThrust = 0.015;
+
 	std::shared_ptr<Thruster> thruster = std::make_shared<Thruster>();
 
 	// drones target
 	std::shared_ptr<Target> target;
 
+	// returns the maximum possible velocity
+	double maxVel();
+
 private:
-	// Configs
-	double maxThrust = 0.015;
 	int rechargeTime = 100;
 	double minDist = 80;
 	double terminalVel = 0.99;
@@ -85,9 +97,6 @@ private:
 
 	// sets target
 	void setTarget(std::shared_ptr<Target> t);
-
-	// size of the screen the done can operate on
-	int screenSize;
 
 	// sets screenSize
 	void setScreenSize(int s);
@@ -114,12 +123,15 @@ public:
 	// set the flight computer
 	void setFlightComputer(Network fc);
 
+	// get the flight computer
+	Network getFlightComputer();
+
 	// Propagates the current spatial properties through the flightComputer
 	void computeThrust();
 
 private:
 
-	Network flightComputer;
+	Network flightComputer = Network({6, 10, 5, 3});
 
 };
 

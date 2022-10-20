@@ -61,7 +61,11 @@
 		"mutex": "cpp",
 		"thread": "cpp",
 		"cfenv": "cpp",
-		"valarray": "cpp"
+		"valarray": "cpp",
+		"bvh": "cpp",
+		"bit": "cpp",
+		"bitset": "cpp",
+		"ranges": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
