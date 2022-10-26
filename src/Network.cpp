@@ -3,20 +3,11 @@
 #include <time.h>
 #include <iostream>
 
-/**
- * @brief Construct a new Network:: Network object
- *
- * @param n
- */
 
-Network::Network(std::vector<int> n){
+void Network::setNetwork(std::vector<int> n){
 	// initalise the private variables
-
 	sizes = n;
 	numLayers = n.size();
-
-	// randomises network setup based on time
-    srand( (unsigned)time( NULL ) );
 
 	// init biases
 	for(int i = 1; i < numLayers; i++){
@@ -42,6 +33,6 @@ Network::Network(std::vector<int> n){
 
 }
 
-Network::~Network(){
+Network::Network(){}
 
-}
+Network::~Network(){}

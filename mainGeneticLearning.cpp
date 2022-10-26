@@ -21,6 +21,7 @@ bool gui = false;
 
 
 int main(){
+	srand(0);
 	if(gui){
 		// TODO want to change this
 		AutoDrone drone = AutoDrone();
@@ -125,11 +126,19 @@ int main(){
 		std::vector<Network> flightComps;
 		std::vector<int> scores;
 
-		for(int i = 0; i < 10000; i++){
+		for(int i = 0; i < 100; i++){
+
+			Network flightComputer;
+
+			flightComputer.setNetwork({6, 10, 5, 3});
+
+			drone.setFlightComputer(flightComputer);
 
 			while (drone.getCount() < 100000){
 				drone.computeThrust();
 			}
+
+			drone.setCount(0);
 
 			// TODO tidy this up pls
 			if(flightComps.size() < 5){
@@ -154,8 +163,8 @@ int main(){
 
 		}
 
-		for(int i : scores){
-			std::cout << "score: " << i <<  "\n";
+		for(int i = 0; i < 5; i++){
+			std::cout << "score: " << scores.at(i) <<  "\n";
 		}
 
 	}

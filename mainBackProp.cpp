@@ -45,7 +45,9 @@ int main () {
 
 	std::vector<int> n = {784, 100, 10};
 
-	Network net = Network(n);
+	Network net;
+
+	net.setNetwork(n);
 
 	std::cout << "Neural Network of size: ";
 

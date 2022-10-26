@@ -51,6 +51,10 @@ int Drone::getCount(){
 	return count;
 }
 
+void Drone::setCount(int c){
+	count = c;
+}
+
 double Drone::maxVel(){
 	return (maxThrust * terminalVel) / (1 - terminalVel);
 }

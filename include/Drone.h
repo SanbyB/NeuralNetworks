@@ -56,6 +56,8 @@ public:
 	// get count
 	int getCount();
 
+	void setCount(int c);
+
 	// returns the score
 	int getScore();
 
@@ -131,7 +133,7 @@ public:
 
 private:
 
-	Network flightComputer = Network({6, 10, 5, 3});
+	Network flightComputer;
 
 };
 
