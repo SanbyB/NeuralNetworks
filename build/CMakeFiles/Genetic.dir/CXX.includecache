@@ -64,6 +64,16 @@ iostream
 SFML/Graphics.hpp
 -
 
+/home/ben/Desktop/Learning/NeuralNetworks/src/Network.cpp
+../include/Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+time.h
+-
+math.h
+-
+iostream
+-
+
 /usr/local/include/eigen3/Eigen/Cholesky
 Core
 /usr/local/include/eigen3/Eigen/Core

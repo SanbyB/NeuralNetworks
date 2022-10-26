@@ -126,7 +126,7 @@ int main(){
 		std::vector<Network> flightComps;
 		std::vector<int> scores;
 
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < 20; i++){
 
 			Network flightComputer;
 
@@ -164,7 +164,14 @@ int main(){
 		}
 
 		for(int i = 0; i < 5; i++){
+			std::cout << "###########################\n";
 			std::cout << "score: " << scores.at(i) <<  "\n";
+			std::cout << "Biases:\n";
+			flightComps.at(i).printBiases();
+			std::cout << "\n\n\n";
+			std::cout << "###########################\n";
+			std::cout << "Weights:\n";
+			flightComps.at(i).printWeights();
 		}
 
 	}

@@ -24,6 +24,10 @@ public:
 	// list of weights for each node connecting to another node in each layer
 	std::vector<Eigen::MatrixXd> weights;
 
+	void printBiases();
+
+	void printWeights();
+
 private:
 	int t = (unsigned)time(NULL);
 };

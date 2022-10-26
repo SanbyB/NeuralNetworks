@@ -1,6 +1,7 @@
 
 #include "../include/Network.h"
 #include <time.h>
+#include <math.h>
 #include <iostream>
 
 
@@ -36,3 +37,19 @@ void Network::setNetwork(std::vector<int> n){
 Network::Network(){}
 
 Network::~Network(){}
+
+void Network::printBiases(){
+	for(int i = 1; i < numLayers; i++){
+		for(int j = 0; j < sizes.at(i); j++){
+			std::cout << (round(biases.at(i  - 1)(j) * 1000.0) / 1000) << ",  ";
+		}
+		std::cout << "\n";
+	}
+}
+
+void Network::printWeights(){
+	for(int i = 1; i <  numLayers; i++){
+		std::cout << weights.at(i - 1);
+		std::cout << "\n\n\n";
+	}
+}
