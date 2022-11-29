@@ -28,7 +28,12 @@ public:
 
 	void printWeights();
 
+	void print();
+
 private:
 	int t = (unsigned)time(NULL);
+
+	// used to round all elements in matrix (TODO make num of dp configurable)
+	static double rnd(double x);
 };
 

@@ -49,7 +49,18 @@ void Network::printBiases(){
 
 void Network::printWeights(){
 	for(int i = 1; i <  numLayers; i++){
-		std::cout << weights.at(i - 1);
+		std::cout << weights.at(i - 1).unaryExpr(&rnd);
 		std::cout << "\n\n\n";
 	}
+}
+
+void Network::print(){
+	std::cout << "Biases:\n";
+	printBiases();
+	std::cout << "\nWeights:\n";
+	printWeights();
+}
+
+double Network::rnd(double x){
+	return round(x * 1000) / 1000;
 }

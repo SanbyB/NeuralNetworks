@@ -165,13 +165,8 @@ int main(){
 
 		for(int i = 0; i < 5; i++){
 			std::cout << "###########################\n";
-			std::cout << "score: " << scores.at(i) <<  "\n";
-			std::cout << "Biases:\n";
-			flightComps.at(i).printBiases();
-			std::cout << "\n\n\n";
-			std::cout << "###########################\n";
-			std::cout << "Weights:\n";
-			flightComps.at(i).printWeights();
+			std::cout << "score: " << scores.at(i) <<  "\n\n";
+			flightComps.at(i).print();
 		}
 
 	}
