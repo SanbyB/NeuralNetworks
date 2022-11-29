@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Draw.dir/handDraw.cpp.o CMakeFiles/Draw.dir/src/Utils.cpp.o  -o Draw  -lsfml-graphics -lsfml-window -lsfml-system 

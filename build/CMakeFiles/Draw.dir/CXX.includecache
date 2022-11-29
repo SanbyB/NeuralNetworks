@@ -6,37 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/ben/Desktop/Learning/NeuralNetworks/include/Actions.h
+/home/ben/Desktop/Learning/NeuralNetworks/handDraw.cpp
 SFML/Graphics.hpp
 -
-
-/home/ben/Desktop/Learning/NeuralNetworks/include/Drone.h
-Network.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
-Target.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Target.h
-Utils.h
+include/Utils.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
-memory
--
-
-/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
-Eigen/Dense
-/home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
-vector
--
-time.h
--
-
-/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
-Eigen/Dense
-/home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
-math.h
--
-Network.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
-
-/home/ben/Desktop/Learning/NeuralNetworks/include/Target.h
 
 /home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
 Eigen/Dense
@@ -46,22 +20,6 @@ vector
 iostream
 -
 fstream
--
-
-/home/ben/Desktop/Learning/NeuralNetworks/mainGeneticLearning.cpp
-include/Drone.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Drone.h
-include/Target.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Target.h
-include/Propagation.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
-include/Actions.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Actions.h
-memory
--
-iostream
--
-SFML/Graphics.hpp
 -
 
 /usr/local/include/eigen3/Eigen/Cholesky

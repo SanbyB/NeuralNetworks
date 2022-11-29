@@ -111,206 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Genetic
+# Target rules for targets named Draw
 
 # Build rule for target.
-Genetic: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Genetic
-.PHONY : Genetic
+Draw: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Draw
+.PHONY : Draw
 
 # fast build rule for target.
-Genetic/fast:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/build
-.PHONY : Genetic/fast
+Draw/fast:
+	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/build
+.PHONY : Draw/fast
 
-mainGeneticLearning.o: mainGeneticLearning.cpp.o
+handDraw.o: handDraw.cpp.o
 
-.PHONY : mainGeneticLearning.o
-
-# target to build an object file
-mainGeneticLearning.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/mainGeneticLearning.cpp.o
-.PHONY : mainGeneticLearning.cpp.o
-
-mainGeneticLearning.i: mainGeneticLearning.cpp.i
-
-.PHONY : mainGeneticLearning.i
-
-# target to preprocess a source file
-mainGeneticLearning.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/mainGeneticLearning.cpp.i
-.PHONY : mainGeneticLearning.cpp.i
-
-mainGeneticLearning.s: mainGeneticLearning.cpp.s
-
-.PHONY : mainGeneticLearning.s
-
-# target to generate assembly for a file
-mainGeneticLearning.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/mainGeneticLearning.cpp.s
-.PHONY : mainGeneticLearning.cpp.s
-
-src/Actions.o: src/Actions.cpp.o
-
-.PHONY : src/Actions.o
+.PHONY : handDraw.o
 
 # target to build an object file
-src/Actions.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Actions.cpp.o
-.PHONY : src/Actions.cpp.o
+handDraw.cpp.o:
+	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/handDraw.cpp.o
+.PHONY : handDraw.cpp.o
 
-src/Actions.i: src/Actions.cpp.i
+handDraw.i: handDraw.cpp.i
 
-.PHONY : src/Actions.i
-
-# target to preprocess a source file
-src/Actions.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Actions.cpp.i
-.PHONY : src/Actions.cpp.i
-
-src/Actions.s: src/Actions.cpp.s
-
-.PHONY : src/Actions.s
-
-# target to generate assembly for a file
-src/Actions.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Actions.cpp.s
-.PHONY : src/Actions.cpp.s
-
-src/BackPropagation.o: src/BackPropagation.cpp.o
-
-.PHONY : src/BackPropagation.o
-
-# target to build an object file
-src/BackPropagation.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/BackPropagation.cpp.o
-.PHONY : src/BackPropagation.cpp.o
-
-src/BackPropagation.i: src/BackPropagation.cpp.i
-
-.PHONY : src/BackPropagation.i
+.PHONY : handDraw.i
 
 # target to preprocess a source file
-src/BackPropagation.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/BackPropagation.cpp.i
-.PHONY : src/BackPropagation.cpp.i
+handDraw.cpp.i:
+	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/handDraw.cpp.i
+.PHONY : handDraw.cpp.i
 
-src/BackPropagation.s: src/BackPropagation.cpp.s
+handDraw.s: handDraw.cpp.s
 
-.PHONY : src/BackPropagation.s
-
-# target to generate assembly for a file
-src/BackPropagation.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/BackPropagation.cpp.s
-.PHONY : src/BackPropagation.cpp.s
-
-src/Drone.o: src/Drone.cpp.o
-
-.PHONY : src/Drone.o
-
-# target to build an object file
-src/Drone.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Drone.cpp.o
-.PHONY : src/Drone.cpp.o
-
-src/Drone.i: src/Drone.cpp.i
-
-.PHONY : src/Drone.i
-
-# target to preprocess a source file
-src/Drone.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Drone.cpp.i
-.PHONY : src/Drone.cpp.i
-
-src/Drone.s: src/Drone.cpp.s
-
-.PHONY : src/Drone.s
+.PHONY : handDraw.s
 
 # target to generate assembly for a file
-src/Drone.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Drone.cpp.s
-.PHONY : src/Drone.cpp.s
-
-src/Network.o: src/Network.cpp.o
-
-.PHONY : src/Network.o
-
-# target to build an object file
-src/Network.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Network.cpp.o
-.PHONY : src/Network.cpp.o
-
-src/Network.i: src/Network.cpp.i
-
-.PHONY : src/Network.i
-
-# target to preprocess a source file
-src/Network.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Network.cpp.i
-.PHONY : src/Network.cpp.i
-
-src/Network.s: src/Network.cpp.s
-
-.PHONY : src/Network.s
-
-# target to generate assembly for a file
-src/Network.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Network.cpp.s
-.PHONY : src/Network.cpp.s
-
-src/Propagation.o: src/Propagation.cpp.o
-
-.PHONY : src/Propagation.o
-
-# target to build an object file
-src/Propagation.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Propagation.cpp.o
-.PHONY : src/Propagation.cpp.o
-
-src/Propagation.i: src/Propagation.cpp.i
-
-.PHONY : src/Propagation.i
-
-# target to preprocess a source file
-src/Propagation.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Propagation.cpp.i
-.PHONY : src/Propagation.cpp.i
-
-src/Propagation.s: src/Propagation.cpp.s
-
-.PHONY : src/Propagation.s
-
-# target to generate assembly for a file
-src/Propagation.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Propagation.cpp.s
-.PHONY : src/Propagation.cpp.s
-
-src/Target.o: src/Target.cpp.o
-
-.PHONY : src/Target.o
-
-# target to build an object file
-src/Target.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Target.cpp.o
-.PHONY : src/Target.cpp.o
-
-src/Target.i: src/Target.cpp.i
-
-.PHONY : src/Target.i
-
-# target to preprocess a source file
-src/Target.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Target.cpp.i
-.PHONY : src/Target.cpp.i
-
-src/Target.s: src/Target.cpp.s
-
-.PHONY : src/Target.s
-
-# target to generate assembly for a file
-src/Target.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Target.cpp.s
-.PHONY : src/Target.cpp.s
+handDraw.cpp.s:
+	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/handDraw.cpp.s
+.PHONY : handDraw.cpp.s
 
 src/Utils.o: src/Utils.cpp.o
 
@@ -318,7 +156,7 @@ src/Utils.o: src/Utils.cpp.o
 
 # target to build an object file
 src/Utils.cpp.o:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Utils.cpp.o
+	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/src/Utils.cpp.o
 .PHONY : src/Utils.cpp.o
 
 src/Utils.i: src/Utils.cpp.i
@@ -327,7 +165,7 @@ src/Utils.i: src/Utils.cpp.i
 
 # target to preprocess a source file
 src/Utils.cpp.i:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Utils.cpp.i
+	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/src/Utils.cpp.i
 .PHONY : src/Utils.cpp.i
 
 src/Utils.s: src/Utils.cpp.s
@@ -336,7 +174,7 @@ src/Utils.s: src/Utils.cpp.s
 
 # target to generate assembly for a file
 src/Utils.cpp.s:
-	$(MAKE) -f CMakeFiles/Genetic.dir/build.make CMakeFiles/Genetic.dir/src/Utils.cpp.s
+	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/src/Utils.cpp.s
 .PHONY : src/Utils.cpp.s
 
 # Help Target
@@ -347,28 +185,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... Genetic"
-	@echo "... mainGeneticLearning.o"
-	@echo "... mainGeneticLearning.i"
-	@echo "... mainGeneticLearning.s"
-	@echo "... src/Actions.o"
-	@echo "... src/Actions.i"
-	@echo "... src/Actions.s"
-	@echo "... src/BackPropagation.o"
-	@echo "... src/BackPropagation.i"
-	@echo "... src/BackPropagation.s"
-	@echo "... src/Drone.o"
-	@echo "... src/Drone.i"
-	@echo "... src/Drone.s"
-	@echo "... src/Network.o"
-	@echo "... src/Network.i"
-	@echo "... src/Network.s"
-	@echo "... src/Propagation.o"
-	@echo "... src/Propagation.i"
-	@echo "... src/Propagation.s"
-	@echo "... src/Target.o"
-	@echo "... src/Target.i"
-	@echo "... src/Target.s"
+	@echo "... Draw"
+	@echo "... handDraw.o"
+	@echo "... handDraw.i"
+	@echo "... handDraw.s"
 	@echo "... src/Utils.o"
 	@echo "... src/Utils.i"
 	@echo "... src/Utils.s"

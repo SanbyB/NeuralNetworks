@@ -851,7 +851,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Genetic"
+			"value" : "Draw"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1134,19 +1134,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "Eigen3_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Eigen3."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/usr/local/share/eigen3/cmake"
-		},
-		{
-			"name" : "Genetic_BINARY_DIR",
+			"name" : "Draw_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1158,7 +1146,7 @@
 			"value" : "/home/ben/Desktop/Learning/NeuralNetworks/build"
 		},
 		{
-			"name" : "Genetic_SOURCE_DIR",
+			"name" : "Draw_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1168,6 +1156,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "/home/ben/Desktop/Learning/NeuralNetworks"
+		},
+		{
+			"name" : "Eigen3_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Eigen3."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/local/share/eigen3/cmake"
 		}
 	],
 	"kind" : "cache",

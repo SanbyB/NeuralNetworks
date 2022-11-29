@@ -1,16 +1,10 @@
 cmake_minimum_required(VERSION 3.10.2)
 
-project(Genetic)
+project(Draw)
 
 add_executable(${PROJECT_NAME}
-mainGeneticLearning.cpp
-src/Network.cpp
-src/Propagation.cpp
-src/BackPropagation.cpp
-src/Drone.cpp
-src/Target.cpp
+handDraw.cpp
 src/Utils.cpp
-src/Actions.cpp
 )
 
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
