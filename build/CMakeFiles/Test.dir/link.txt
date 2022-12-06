@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Test.dir/test.cpp.o CMakeFiles/Test.dir/src/Utils.cpp.o CMakeFiles/Test.dir/src/Network.cpp.o CMakeFiles/Test.dir/src/Propagation.cpp.o CMakeFiles/Test.dir/src/BackPropagation.cpp.o  -o Test  -lsfml-graphics -lsfml-window -lsfml-system 

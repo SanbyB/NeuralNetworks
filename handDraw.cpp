@@ -29,6 +29,7 @@ void run(int &index, std::vector<std::vector<double>> td){
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed){
 				window.close();
+				std::cout << "Input an integer index of the data you want to draw,\ninput a negative number if you  wish to quit.\n";
 				std::cin >> index;
 				if(index >= 0){
 					run(index, td);
@@ -49,14 +50,8 @@ void run(int &index, std::vector<std::vector<double>> td){
 	}
 }
 
-
-int main(){
-
-	bool draw = true;
-
-	if(draw){
-
-		std::vector<sf::RectangleShape> pixels(784);
+void draw(){
+	std::vector<sf::RectangleShape> pixels(784);
 
 		// create the window
 		sf::RenderWindow window(sf::VideoMode(screenSize, screenSize), "Draw");
@@ -96,9 +91,15 @@ int main(){
 			// end the current frame
 			window.display();
 		}
+}
 
 
+int main(){
 
+	bool drawMode = false;
+
+	if(drawMode){
+		draw();
 	}
 	else{
 		std::vector<std::vector<double>> td= {};

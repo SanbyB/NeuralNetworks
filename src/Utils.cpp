@@ -16,7 +16,7 @@ Eigen::VectorXd output(int n){
 	return v;
 }
 
-// Function to convert vectoor of 0s
+// Function to convert vector of 0s
 // length 10 with a 1 in the i'th position
 // to the integer i [0, 9]
 int output(Eigen::VectorXd v){
@@ -98,15 +98,46 @@ void readAns(std::vector<double>& ans, std::string path){
 	std::cout << path << " data answers{ Loaded: " << ans.size() << " entries}\n";
 }
 
-int sign(double num){
-	if(num > 0){
-		return 1;
+
+void outputNet(Network net, std::string file){
+	std::ofstream outFile(file);
+
+	for(int i = 1; i < net.numLayers; i++){
+		for(int j = 0; j < net.sizes.at(i); j++){
+			outFile << round(net.biases.at(i  - 1)(j) * 1000.0) / 1000 <<  ", ";
+		}
+		outFile  << "\n";
 	}
-	else if (num < 0){
-		return -1;
+	outFile << "\n";
+	for(int i = 1; i <  net.numLayers; i++){
+		outFile << net.weights.at(i - 1).unaryExpr([](double x){return round(x * 1000) / 1000;});
+		outFile << "\n\n";
 	}
-	else{
-		return 0;
-	}
-	
+	outFile.close();
 }
+
+Network inputNet(std::string file){
+	std::ifstream inFile(file);
+	std::string input;
+	while(getline(inFile, input)){
+		std::cout << input << "\n";
+	}
+	inFile.close();
+	Network net;
+	return net;
+}
+
+
+
+// int sign(double num){
+// 	if(num > 0){
+// 		return 1;
+// 	}
+// 	else if (num < 0){
+// 		return -1;
+// 	}
+// 	else{
+// 		return 0;
+// 	}
+
+// }

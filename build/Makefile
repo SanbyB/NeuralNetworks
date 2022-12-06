@@ -111,44 +111,98 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Draw
+# Target rules for targets named Test
 
 # Build rule for target.
-Draw: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Draw
-.PHONY : Draw
+Test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Test
+.PHONY : Test
 
 # fast build rule for target.
-Draw/fast:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/build
-.PHONY : Draw/fast
+Test/fast:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/build
+.PHONY : Test/fast
 
-handDraw.o: handDraw.cpp.o
+src/BackPropagation.o: src/BackPropagation.cpp.o
 
-.PHONY : handDraw.o
+.PHONY : src/BackPropagation.o
 
 # target to build an object file
-handDraw.cpp.o:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/handDraw.cpp.o
-.PHONY : handDraw.cpp.o
+src/BackPropagation.cpp.o:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/BackPropagation.cpp.o
+.PHONY : src/BackPropagation.cpp.o
 
-handDraw.i: handDraw.cpp.i
+src/BackPropagation.i: src/BackPropagation.cpp.i
 
-.PHONY : handDraw.i
+.PHONY : src/BackPropagation.i
 
 # target to preprocess a source file
-handDraw.cpp.i:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/handDraw.cpp.i
-.PHONY : handDraw.cpp.i
+src/BackPropagation.cpp.i:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/BackPropagation.cpp.i
+.PHONY : src/BackPropagation.cpp.i
 
-handDraw.s: handDraw.cpp.s
+src/BackPropagation.s: src/BackPropagation.cpp.s
 
-.PHONY : handDraw.s
+.PHONY : src/BackPropagation.s
 
 # target to generate assembly for a file
-handDraw.cpp.s:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/handDraw.cpp.s
-.PHONY : handDraw.cpp.s
+src/BackPropagation.cpp.s:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/BackPropagation.cpp.s
+.PHONY : src/BackPropagation.cpp.s
+
+src/Network.o: src/Network.cpp.o
+
+.PHONY : src/Network.o
+
+# target to build an object file
+src/Network.cpp.o:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Network.cpp.o
+.PHONY : src/Network.cpp.o
+
+src/Network.i: src/Network.cpp.i
+
+.PHONY : src/Network.i
+
+# target to preprocess a source file
+src/Network.cpp.i:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Network.cpp.i
+.PHONY : src/Network.cpp.i
+
+src/Network.s: src/Network.cpp.s
+
+.PHONY : src/Network.s
+
+# target to generate assembly for a file
+src/Network.cpp.s:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Network.cpp.s
+.PHONY : src/Network.cpp.s
+
+src/Propagation.o: src/Propagation.cpp.o
+
+.PHONY : src/Propagation.o
+
+# target to build an object file
+src/Propagation.cpp.o:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Propagation.cpp.o
+.PHONY : src/Propagation.cpp.o
+
+src/Propagation.i: src/Propagation.cpp.i
+
+.PHONY : src/Propagation.i
+
+# target to preprocess a source file
+src/Propagation.cpp.i:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Propagation.cpp.i
+.PHONY : src/Propagation.cpp.i
+
+src/Propagation.s: src/Propagation.cpp.s
+
+.PHONY : src/Propagation.s
+
+# target to generate assembly for a file
+src/Propagation.cpp.s:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Propagation.cpp.s
+.PHONY : src/Propagation.cpp.s
 
 src/Utils.o: src/Utils.cpp.o
 
@@ -156,7 +210,7 @@ src/Utils.o: src/Utils.cpp.o
 
 # target to build an object file
 src/Utils.cpp.o:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/src/Utils.cpp.o
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Utils.cpp.o
 .PHONY : src/Utils.cpp.o
 
 src/Utils.i: src/Utils.cpp.i
@@ -165,7 +219,7 @@ src/Utils.i: src/Utils.cpp.i
 
 # target to preprocess a source file
 src/Utils.cpp.i:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/src/Utils.cpp.i
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Utils.cpp.i
 .PHONY : src/Utils.cpp.i
 
 src/Utils.s: src/Utils.cpp.s
@@ -174,8 +228,35 @@ src/Utils.s: src/Utils.cpp.s
 
 # target to generate assembly for a file
 src/Utils.cpp.s:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/src/Utils.cpp.s
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Utils.cpp.s
 .PHONY : src/Utils.cpp.s
+
+test.o: test.cpp.o
+
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/test.cpp.s
+.PHONY : test.cpp.s
 
 # Help Target
 help:
@@ -185,13 +266,22 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... Draw"
-	@echo "... handDraw.o"
-	@echo "... handDraw.i"
-	@echo "... handDraw.s"
+	@echo "... Test"
+	@echo "... src/BackPropagation.o"
+	@echo "... src/BackPropagation.i"
+	@echo "... src/BackPropagation.s"
+	@echo "... src/Network.o"
+	@echo "... src/Network.i"
+	@echo "... src/Network.s"
+	@echo "... src/Propagation.o"
+	@echo "... src/Propagation.i"
+	@echo "... src/Propagation.s"
 	@echo "... src/Utils.o"
 	@echo "... src/Utils.i"
 	@echo "... src/Utils.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 

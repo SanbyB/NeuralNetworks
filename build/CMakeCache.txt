@@ -145,7 +145,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Draw
+CMAKE_PROJECT_NAME:STATIC=Test
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -209,14 +209,14 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Value Computed by CMake
-Draw_BINARY_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks/build
-
-//Value Computed by CMake
-Draw_SOURCE_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks
-
 //The directory containing a CMake configuration file for Eigen3.
 Eigen3_DIR:PATH=/usr/local/share/eigen3/cmake
+
+//Value Computed by CMake
+Test_BINARY_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks/build
+
+//Value Computed by CMake
+Test_SOURCE_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks
 
 
 ########################

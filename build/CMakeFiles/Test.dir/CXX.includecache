@@ -6,11 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/ben/Desktop/Learning/NeuralNetworks/handDraw.cpp
-SFML/Graphics.hpp
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+Eigen/Dense
+/home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
+vector
 -
-include/Utils.h
-/home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
+time.h
+-
 
 /home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
 Eigen/Dense
@@ -21,6 +23,12 @@ iostream
 -
 fstream
 -
+Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/Utils.cpp
+../include/Utils.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
 
 /usr/local/include/eigen3/Eigen/Cholesky
 Core

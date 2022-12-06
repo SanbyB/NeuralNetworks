@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "Network.h"
 
 // Function to convert integer [0, 9]
 // to a vector of 0s length 10 with a 1
@@ -23,5 +24,8 @@ void readData(std::vector<std::vector<double>>& data, std::string path);
 
 void readAns(std::vector<double>& ans, std::string path);
 
-int sign(double num);
+// int sign(double num);
 
+void outputNet(Network net, std::string file);
+
+Network inputNet(std::string file);

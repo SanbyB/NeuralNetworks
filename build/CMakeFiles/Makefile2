@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/ben/Desktop/Learning/NeuralNetworks/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Draw.dir/all
+all: CMakeFiles/Test.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Draw.dir/clean
+clean: CMakeFiles/Test.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Draw.dir
+# Target rules for target CMakeFiles/Test.dir
 
 # All Build rule for target.
-CMakeFiles/Draw.dir/all:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/depend
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ben/Desktop/Learning/NeuralNetworks/build/CMakeFiles --progress-num=1,2,3 "Built target Draw"
-.PHONY : CMakeFiles/Draw.dir/all
+CMakeFiles/Test.dir/all:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/depend
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ben/Desktop/Learning/NeuralNetworks/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target Test"
+.PHONY : CMakeFiles/Test.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Draw.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ben/Desktop/Learning/NeuralNetworks/build/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Draw.dir/all
+CMakeFiles/Test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ben/Desktop/Learning/NeuralNetworks/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ben/Desktop/Learning/NeuralNetworks/build/CMakeFiles 0
-.PHONY : CMakeFiles/Draw.dir/rule
+.PHONY : CMakeFiles/Test.dir/rule
 
 # Convenience name for target.
-Draw: CMakeFiles/Draw.dir/rule
+Test: CMakeFiles/Test.dir/rule
 
-.PHONY : Draw
+.PHONY : Test
 
 # clean rule for target.
-CMakeFiles/Draw.dir/clean:
-	$(MAKE) -f CMakeFiles/Draw.dir/build.make CMakeFiles/Draw.dir/clean
-.PHONY : CMakeFiles/Draw.dir/clean
+CMakeFiles/Test.dir/clean:
+	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/clean
+.PHONY : CMakeFiles/Test.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

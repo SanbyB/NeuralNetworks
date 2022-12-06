@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.10.2)
 
-project(Draw)
+project(Test)
 
 add_executable(${PROJECT_NAME}
-handDraw.cpp
+# mainBackProp.cpp
+test.cpp
 src/Utils.cpp
+src/Network.cpp
+src/Propagation.cpp
+src/BackPropagation.cpp
 )
 
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
