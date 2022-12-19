@@ -99,14 +99,14 @@ void readAns(std::vector<double>& ans, std::string path){
 }
 
 
-void outputNet(Network net, std::string file){
+void writeNet(Network net, std::string file){
 	std::ofstream outFile(file);
 
+	outFile << "\n";
+
 	for(int i = 1; i < net.numLayers; i++){
-		for(int j = 0; j < net.sizes.at(i); j++){
-			outFile << round(net.biases.at(i  - 1)(j) * 1000.0) / 1000 <<  ", ";
-		}
-		outFile  << "\n";
+		outFile << net.biases.at(i  - 1).transpose().unaryExpr([](double x){return round(x * 1000) / 1000;});
+		outFile  << "\n\n";
 	}
 	outFile << "\n";
 	for(int i = 1; i <  net.numLayers; i++){
@@ -116,14 +116,108 @@ void outputNet(Network net, std::string file){
 	outFile.close();
 }
 
-Network inputNet(std::string file){
+Network readNet(std::string file){
 	std::ifstream inFile(file);
 	std::string input;
+
+	std::vector<std::vector<double>> b;
+	std::vector<std::vector<std::vector<double>>> w;
+	std::vector<std::vector<double>> weightMat;
+
+	int numLayers = 1;
+
+	bool newline = false;
+	bool biasesComplete = false;
+
 	while(getline(inFile, input)){
-		std::cout << input << "\n";
+		if(!biasesComplete){
+			std::vector<double> biasVec = {};
+			std::string num = "";
+			for(int i = 0; i < input.size(); i++){
+				// covert char to string
+				std::string s(1, input[i]);
+				// append digits to the string
+				if(s != " "){
+					num.append(s);
+					if(i == input.size() -1){
+						biasVec.push_back(std::stod(num));
+						b.push_back(biasVec);
+						numLayers++;
+					}
+				}
+				// append number when there's a space
+				else if(num != ""){
+					biasVec.push_back(std::stod(num));
+					num = "";
+				}
+			}
+		}
+		else{
+			std::vector<double> weightVec = {};
+			std::string num = "";
+			for(int i = 0; i < input.size(); i++){
+				// convert char to string
+				std::string s(1, input[i]);
+				// append digits to the string
+				if(s != " "){
+					num.append(s);
+					if(i == input.size() -1){
+						weightVec.push_back(std::stod(num));
+						weightMat.push_back(weightVec);
+					}
+				}
+				// append number when there's a space
+				else if(num != ""){
+					weightVec.push_back(std::stod(num));
+					num = "";
+				}
+			}
+
+		}
+
+		if(input == ""){
+			if(biasesComplete){
+				w.push_back(weightMat);
+				weightMat = {};
+			}
+			if(newline){ biasesComplete = true; }
+			newline = true;
+		}
+		else{ newline = false; }
+
 	}
-	inFile.close();
+
+	// network to be returned
 	Network net;
+
+	net.numLayers = numLayers;
+
+	std::vector<Eigen::VectorXd> biases;
+	std::vector<Eigen::MatrixXd> weights;
+
+	for(auto bias: b){
+		Eigen::VectorXd bs(bias.size());
+		for(int i = 0; i < bias.size(); i ++){
+			bs(i) = bias.at(i);
+		}
+		biases.push_back(bs);
+	}
+
+	for(auto weight: w){
+		Eigen::MatrixXd ws(weight.size(), weight[0].size());
+		for(int i = 0; i < weight.size(); i++){
+			for(int j = 0; j < weight[0].size(); j ++){
+				ws(i, j) = weight.at(i).at(j);
+			}
+		}
+		weights.push_back(ws);
+	}
+
+	net.biases = biases;
+	net.weights = weights;
+
+	inFile.close();
+
 	return net;
 }
 

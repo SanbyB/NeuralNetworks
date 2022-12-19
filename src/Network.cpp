@@ -40,9 +40,7 @@ Network::~Network(){}
 
 void Network::printBiases(){
 	for(int i = 1; i < numLayers; i++){
-		for(int j = 0; j < sizes.at(i); j++){
-			std::cout << (round(biases.at(i  - 1)(j) * 1000.0) / 1000) << ",  ";
-		}
+		std::cout << biases.at(i - 1).transpose().unaryExpr(&rnd);
 		std::cout << "\n";
 	}
 }
