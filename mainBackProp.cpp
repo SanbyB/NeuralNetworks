@@ -13,59 +13,9 @@
 #include "include/Utils.h"
 #include <iostream>
 #include <fstream>
-#include <SFML/Graphics.hpp>
 // #include <string>
 // #include <vector>
 // #include <sstream>
-
-std::vector<double> draw(){
-	std::vector<double> output(784);
-
-	std::vector<sf::RectangleShape> pixels(784);
-
-	int screenSize = 28 * 28;
-
-		// create the window
-	sf::RenderWindow window(sf::VideoMode(screenSize, screenSize), "Draw");
-
-	// run the program as long as the window is open
-	while (window.isOpen()){
-		// check all the window's events that were triggered since the last iteration of the loop
-		sf::Event event;
-		while (window.pollEvent(event)){
-			// "close requested" event: we close the window
-			if (event.type == sf::Event::Closed){
-				window.close();
-			}
-			sf::Mouse::Button left = sf::Mouse::Button::Left;
-			if(sf::Mouse::isButtonPressed(left)){
-				sf::Vector2i pos = sf::Mouse::getPosition(window);
-				sf::RectangleShape pixel(sf::Vector2f(28, 28));
-
-				int i = pos.x /  28 + 28 * (pos.y / 28);
-
-				pixel.setFillColor(sf::Color(0, 0, 0));
-				pixel.setOrigin(sf::Vector2f(0, 0));
-				pixel.setPosition(sf::Vector2f(28 * (i % 28), 28 * (i / 28)));
-
-				pixels.at(i) = pixel;
-				output.at(i) = 1;
-			}
-		}
-
-		// clear the window with color
-		window.clear(sf::Color(255,255,255));
-
-		// draw everything here...
-		for(int i = 0; i < 784; i++){
-			window.draw(pixels.at(i));
-		}
-
-		// end the current frame
-		window.display();
-	}
-	return output;
-}
 
 
 int main () {
@@ -128,11 +78,9 @@ int main () {
 
 	std::cout << count << " out of 10,000 images identified correctly\n";
 
-	std::vector<double> drawnInt = draw();
-
-	int myAns = output(Propagation::propagate(toEigen(drawnInt), net));
-
-	std::cout << "You drew a " << myAns << "\n";
+	std::string file = "./output.txt";
+	writeNet(net, file);
+	std::cout << "Network saved to " << file << "\n";
 
 	return 0;
 }

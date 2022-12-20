@@ -196,10 +196,7 @@ Network readNet(std::string file){
 	std::vector<Eigen::MatrixXd> weights;
 
 	for(auto bias: b){
-		Eigen::VectorXd bs(bias.size());
-		for(int i = 0; i < bias.size(); i ++){
-			bs(i) = bias.at(i);
-		}
+		Eigen::VectorXd bs = toEigen(bias);
 		biases.push_back(bs);
 	}
 

@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Test
+# Target rules for targets named MainBackProp
 
 # Build rule for target.
-Test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Test
-.PHONY : Test
+MainBackProp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 MainBackProp
+.PHONY : MainBackProp
 
 # fast build rule for target.
-Test/fast:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/build
-.PHONY : Test/fast
+MainBackProp/fast:
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/build
+.PHONY : MainBackProp/fast
+
+mainBackProp.o: mainBackProp.cpp.o
+
+.PHONY : mainBackProp.o
+
+# target to build an object file
+mainBackProp.cpp.o:
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/mainBackProp.cpp.o
+.PHONY : mainBackProp.cpp.o
+
+mainBackProp.i: mainBackProp.cpp.i
+
+.PHONY : mainBackProp.i
+
+# target to preprocess a source file
+mainBackProp.cpp.i:
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/mainBackProp.cpp.i
+.PHONY : mainBackProp.cpp.i
+
+mainBackProp.s: mainBackProp.cpp.s
+
+.PHONY : mainBackProp.s
+
+# target to generate assembly for a file
+mainBackProp.cpp.s:
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/mainBackProp.cpp.s
+.PHONY : mainBackProp.cpp.s
 
 src/BackPropagation.o: src/BackPropagation.cpp.o
 
@@ -129,7 +156,7 @@ src/BackPropagation.o: src/BackPropagation.cpp.o
 
 # target to build an object file
 src/BackPropagation.cpp.o:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/BackPropagation.cpp.o
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/BackPropagation.cpp.o
 .PHONY : src/BackPropagation.cpp.o
 
 src/BackPropagation.i: src/BackPropagation.cpp.i
@@ -138,7 +165,7 @@ src/BackPropagation.i: src/BackPropagation.cpp.i
 
 # target to preprocess a source file
 src/BackPropagation.cpp.i:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/BackPropagation.cpp.i
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/BackPropagation.cpp.i
 .PHONY : src/BackPropagation.cpp.i
 
 src/BackPropagation.s: src/BackPropagation.cpp.s
@@ -147,7 +174,7 @@ src/BackPropagation.s: src/BackPropagation.cpp.s
 
 # target to generate assembly for a file
 src/BackPropagation.cpp.s:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/BackPropagation.cpp.s
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/BackPropagation.cpp.s
 .PHONY : src/BackPropagation.cpp.s
 
 src/Network.o: src/Network.cpp.o
@@ -156,7 +183,7 @@ src/Network.o: src/Network.cpp.o
 
 # target to build an object file
 src/Network.cpp.o:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Network.cpp.o
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Network.cpp.o
 .PHONY : src/Network.cpp.o
 
 src/Network.i: src/Network.cpp.i
@@ -165,7 +192,7 @@ src/Network.i: src/Network.cpp.i
 
 # target to preprocess a source file
 src/Network.cpp.i:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Network.cpp.i
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Network.cpp.i
 .PHONY : src/Network.cpp.i
 
 src/Network.s: src/Network.cpp.s
@@ -174,7 +201,7 @@ src/Network.s: src/Network.cpp.s
 
 # target to generate assembly for a file
 src/Network.cpp.s:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Network.cpp.s
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Network.cpp.s
 .PHONY : src/Network.cpp.s
 
 src/Propagation.o: src/Propagation.cpp.o
@@ -183,7 +210,7 @@ src/Propagation.o: src/Propagation.cpp.o
 
 # target to build an object file
 src/Propagation.cpp.o:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Propagation.cpp.o
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Propagation.cpp.o
 .PHONY : src/Propagation.cpp.o
 
 src/Propagation.i: src/Propagation.cpp.i
@@ -192,7 +219,7 @@ src/Propagation.i: src/Propagation.cpp.i
 
 # target to preprocess a source file
 src/Propagation.cpp.i:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Propagation.cpp.i
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Propagation.cpp.i
 .PHONY : src/Propagation.cpp.i
 
 src/Propagation.s: src/Propagation.cpp.s
@@ -201,7 +228,7 @@ src/Propagation.s: src/Propagation.cpp.s
 
 # target to generate assembly for a file
 src/Propagation.cpp.s:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Propagation.cpp.s
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Propagation.cpp.s
 .PHONY : src/Propagation.cpp.s
 
 src/Utils.o: src/Utils.cpp.o
@@ -210,7 +237,7 @@ src/Utils.o: src/Utils.cpp.o
 
 # target to build an object file
 src/Utils.cpp.o:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Utils.cpp.o
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Utils.cpp.o
 .PHONY : src/Utils.cpp.o
 
 src/Utils.i: src/Utils.cpp.i
@@ -219,7 +246,7 @@ src/Utils.i: src/Utils.cpp.i
 
 # target to preprocess a source file
 src/Utils.cpp.i:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Utils.cpp.i
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Utils.cpp.i
 .PHONY : src/Utils.cpp.i
 
 src/Utils.s: src/Utils.cpp.s
@@ -228,35 +255,8 @@ src/Utils.s: src/Utils.cpp.s
 
 # target to generate assembly for a file
 src/Utils.cpp.s:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/Utils.cpp.s
+	$(MAKE) -f CMakeFiles/MainBackProp.dir/build.make CMakeFiles/MainBackProp.dir/src/Utils.cpp.s
 .PHONY : src/Utils.cpp.s
-
-test.o: test.cpp.o
-
-.PHONY : test.o
-
-# target to build an object file
-test.cpp.o:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/test.cpp.o
-.PHONY : test.cpp.o
-
-test.i: test.cpp.i
-
-.PHONY : test.i
-
-# target to preprocess a source file
-test.cpp.i:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/test.cpp.i
-.PHONY : test.cpp.i
-
-test.s: test.cpp.s
-
-.PHONY : test.s
-
-# target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/test.cpp.s
-.PHONY : test.cpp.s
 
 # Help Target
 help:
@@ -266,7 +266,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... Test"
+	@echo "... MainBackProp"
+	@echo "... mainBackProp.o"
+	@echo "... mainBackProp.i"
+	@echo "... mainBackProp.s"
 	@echo "... src/BackPropagation.o"
 	@echo "... src/BackPropagation.i"
 	@echo "... src/BackPropagation.s"
@@ -279,9 +282,6 @@ help:
 	@echo "... src/Utils.o"
 	@echo "... src/Utils.i"
 	@echo "... src/Utils.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
 .PHONY : help
 
 

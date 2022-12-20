@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+Eigen/Dense
+/home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
+Propagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
+Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+
 /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
 Eigen/Dense
 /home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
@@ -13,6 +21,14 @@ vector
 -
 time.h
 -
+
+/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
+Eigen/Dense
+/home/ben/Desktop/Learning/NeuralNetworks/include/Eigen/Dense
+math.h
+-
+Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
 
 /home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
 Eigen/Dense
@@ -25,6 +41,40 @@ fstream
 -
 Network.h
 /home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+
+/home/ben/Desktop/Learning/NeuralNetworks/mainBackProp.cpp
+include/Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+include/Propagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
+include/BackPropagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+include/Utils.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Utils.h
+iostream
+-
+fstream
+-
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/BackPropagation.cpp
+../include/BackPropagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/BackPropagation.h
+iostream
+-
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/Network.cpp
+../include/Network.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Network.h
+time.h
+-
+math.h
+-
+iostream
+-
+
+/home/ben/Desktop/Learning/NeuralNetworks/src/Propagation.cpp
+../include/Propagation.h
+/home/ben/Desktop/Learning/NeuralNetworks/include/Propagation.h
 
 /home/ben/Desktop/Learning/NeuralNetworks/src/Utils.cpp
 ../include/Utils.h

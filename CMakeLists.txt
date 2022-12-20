@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10.2)
 
-project(Test)
+project(MainBackProp)
 
 add_executable(${PROJECT_NAME}
-# mainBackProp.cpp
-test.cpp
+mainBackProp.cpp
+# handDraw.cpp
 src/Utils.cpp
 src/Network.cpp
 src/Propagation.cpp

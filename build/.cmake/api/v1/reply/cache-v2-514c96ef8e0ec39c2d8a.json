@@ -851,7 +851,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Test"
+			"value" : "MainBackProp"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1146,7 +1146,7 @@
 			"value" : "/usr/local/share/eigen3/cmake"
 		},
 		{
-			"name" : "Test_BINARY_DIR",
+			"name" : "MainBackProp_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1158,7 +1158,7 @@
 			"value" : "/home/ben/Desktop/Learning/NeuralNetworks/build"
 		},
 		{
-			"name" : "Test_SOURCE_DIR",
+			"name" : "MainBackProp_SOURCE_DIR",
 			"properties" : 
 			[
 				{

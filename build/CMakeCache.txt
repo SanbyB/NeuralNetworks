@@ -145,7 +145,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Test
+CMAKE_PROJECT_NAME:STATIC=MainBackProp
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -213,10 +213,10 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 Eigen3_DIR:PATH=/usr/local/share/eigen3/cmake
 
 //Value Computed by CMake
-Test_BINARY_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks/build
+MainBackProp_BINARY_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks/build
 
 //Value Computed by CMake
-Test_SOURCE_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks
+MainBackProp_SOURCE_DIR:STATIC=/home/ben/Desktop/Learning/NeuralNetworks
 
 
 ########################
