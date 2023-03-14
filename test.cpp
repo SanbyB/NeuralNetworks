@@ -4,11 +4,12 @@ int main(){
 
 	Network net;
 
-	net.setNetwork({3, 5, 4, 2});
+	// net.setNetwork({3, 5, 4, 2});
 
-	net.print();
+	// net.print();
 
-	writeNet(net, "../output.txt");
+	// writeNet(net, "../output.txt");
+
 
 	auto n = readNet("../output.txt");
 

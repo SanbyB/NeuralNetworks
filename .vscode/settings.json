@@ -68,7 +68,9 @@
 		"ranges": "cpp",
 		"compare": "cpp",
 		"concepts": "cpp",
-		"stop_token": "cpp"
+		"stop_token": "cpp",
+		"numbers": "cpp",
+		"semaphore": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

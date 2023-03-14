@@ -26,6 +26,8 @@ void readAns(std::vector<double>& ans, std::string path);
 
 // int sign(double num);
 
+// write the given network to an output file
 void writeNet(Network net, std::string file);
 
+// read a network from a file into return
 Network readNet(std::string file);

@@ -4,6 +4,8 @@
 #include "include/Actions.h"
 #include <memory>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 #include <SFML/Graphics.hpp>
 
@@ -17,7 +19,7 @@ int thrusterWidth = 8;
 int thrusterHeight = 20;
 
 bool humanControl = false;
-bool gui = false;
+bool gui = true;
 
 
 int main(){
@@ -31,6 +33,12 @@ int main(){
 		target->initTarget(screenSize);
 
 		drone.init(screenSize, target);
+
+		Network flightComputer = readNet("../output.txt");
+
+		// flightComputer.setNetwork({6, 10, 5, 3});
+
+		drone.setFlightComputer(flightComputer);
 
 
 		sf::RenderWindow window(sf::VideoMode(screenSize, screenSize), "Drone simulation!");
@@ -75,6 +83,7 @@ int main(){
 				if (event.type == sf::Event::Closed){
 					window.close();
 					Network fc = drone.getFlightComputer();
+					// Networks have a print() function, would recommend changing to that
 					std::cout << "weights\n";
 					for(int i = 0; i < fc.numLayers - 1; i++){
 						std::cout << fc.weights.at(i) << "\n";
@@ -124,9 +133,15 @@ int main(){
 		drone.init(screenSize, target);
 
 		std::vector<Network> flightComps;
-		std::vector<int> scores;
+		std::vector<int> scores(5, 0);
 
 		for(int i = 0; i < 20; i++){
+			for(int n = 0; n < i; n++){
+				std::cout << "-";
+			}
+			std::cout << "\n";
+			std::cout << "\x1b[1A";
+			// std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
 			Network flightComputer;
 
@@ -134,16 +149,19 @@ int main(){
 
 			drone.setFlightComputer(flightComputer);
 
+
+			// for given time
 			while (drone.getCount() < 100000){
 				drone.computeThrust();
 			}
 
+			// reset drone
 			drone.setCount(0);
 
 			// TODO tidy this up pls
 			if(flightComps.size() < 5){
 				flightComps.push_back(drone.getFlightComputer());
-				scores.push_back(drone.getScore());
+				scores.at(i) = drone.getScore();
 			}
 			else{
 				int min = 2000;
@@ -161,7 +179,10 @@ int main(){
 				}
 			}
 
+
+
 		}
+		std::cout << "\n";
 
 		for(int i = 0; i < 5; i++){
 			std::cout << "###########################\n";
