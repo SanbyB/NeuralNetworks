@@ -61,6 +61,8 @@ public:
 	// returns the score
 	int getScore();
 
+	void setScore(int s);
+
 protected:
 	// size of the screen the done can operate on
 		int screenSize;

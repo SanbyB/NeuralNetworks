@@ -55,6 +55,10 @@ void Drone::setCount(int c){
 	count = c;
 }
 
+void Drone::setScore(int s){
+	score = s;
+}
+
 double Drone::maxVel(){
 	return (maxThrust * terminalVel) / (1 - terminalVel);
 }
@@ -135,48 +139,47 @@ Network AutoDrone::getFlightComputer(){
 }
 
 void AutoDrone::computeThrust(){
-	Eigen::VectorXd input(6);
+	Eigen::VectorXd input(1);
 
-	input(0) = posX - target->getPosX() / screenSize;
-	input(1) = posY - target->getPosY() / screenSize;
-	input(2) = velX / maxVel();
-	input(3) = velY / maxVel();
-	input(4) = thruster->thrust() / maxThrust;
-	input(5) = (thruster->angle() + M_PI) / (2 * M_PI);
+	// input(0) = posX - target->getPosX() / screenSize;
+	// input(1) = posY - target->getPosY() / screenSize;
+	// input(2) = velX / maxVel();
+	// input(3) = velY / maxVel();
+	input(0) = (thruster->angle() + M_PI) / (2 * M_PI);
 
-	Eigen::VectorXd output(3);
+	Eigen::VectorXd output(1);
 
 	output = Propagation::propagate(input, flightComputer);
 
-	for(int i = 0; i < output.size(); i++){
-		// clamp the output [0, 1]
-		if(output(i) <= 0){
-			output(i) = 0;
-		}else if(output(i) >= 1){
-			output(i) = 1;
-		}
-
-		// manually set the thresholds
-		if(i == 0){
-			if(output(i) > 0.3){
-				output(i) = 1;
-			}else{output(i) = 0;}
-		}
-		if(i == 1){
-			if(output(i) > 0.45){
-				output(i) = 1;
-			}else{output(i) = 0;}
-		}
-		if(i == 2){
-			if(output(i) > 0.45){
-				output(i) = 1;
-			}else{output(i) = 0;}
-		}
+	// for(int i = 0; i < output.size(); i++){
+	// clamp the output [0, 1]
+	if(output(0) <= 0){
+		output(0) = 0;
+	}else if(output(0) >= 1){
+		output(0) = 1;
 	}
 
-	bool w = output(0);
-	bool a = output(1);
-	bool d = output(2);
+		// manually set the thresholds
+		// if(i == 0){
+	if(output(0) > 0.5){
+		output(0) = 1;
+	}else{output(0) = 0;}
+		// }
+		// if(i == 1){
+		// 	if(output(i) > 0.45){
+		// 		output(i) = 1;
+		// 	}else{output(i) = 0;}
+		// }
+		// if(i == 2){
+		// 	if(output(i) > 0.45){
+		// 		output(i) = 1;
+		// 	}else{output(i) = 0;}
+		// }
+	// }
 
-	update(w, a, d);
+	bool a = output(0);
+	// bool a = output(1);
+	// bool d = output(2);
+
+	update(true, a, !a);
 }

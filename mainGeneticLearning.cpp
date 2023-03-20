@@ -77,8 +77,7 @@ int main(){
 		while (window.isOpen())
 		{
 			sf::Event event;
-			while (window.pollEvent(event))
-			{
+			while (window.pollEvent(event)){
 				// close window
 				if (event.type == sf::Event::Closed){
 					window.close();
@@ -132,8 +131,7 @@ int main(){
 
 		drone.init(screenSize, target);
 
-		std::vector<Network> flightComps;
-		std::vector<int> scores(5, 0);
+		std::map<int, Network> scores;
 
 		for(int i = 0; i < 20; i++){
 			for(int n = 0; n < i; n++){
@@ -145,49 +143,33 @@ int main(){
 
 			Network flightComputer;
 
-			flightComputer.setNetwork({6, 10, 5, 3});
+			flightComputer.setNetwork({1, 4, 5, 1});
 
 			drone.setFlightComputer(flightComputer);
 
 
-			// for given time
+			// let drone fly for given time
 			while (drone.getCount() < 100000){
 				drone.computeThrust();
 			}
 
+			// push back flight computer and score
+			scores[drone.getScore()] = drone.getFlightComputer();
+			
 			// reset drone
 			drone.setCount(0);
-
-			// TODO tidy this up pls
-			if(flightComps.size() < 5){
-				flightComps.push_back(drone.getFlightComputer());
-				scores.at(i) = drone.getScore();
-			}
-			else{
-				int min = 2000;
-				int mindex;
-				for(int i; i < 5; i++){
-					int prev = min;
-					min = std::min(scores.at(i), min);
-					if(min < prev){
-						mindex = i;
-					}
-				}
-				if(drone.getScore() > min){
-					flightComps.at(mindex) = drone.getFlightComputer();
-					scores.at(mindex) = drone.getScore();
-				}
-			}
-
+			drone.setScore(0);
 
 
 		}
 		std::cout << "\n";
 
-		for(int i = 0; i < 5; i++){
+		std::cout << "scores size " << scores.size() << "\n";
+
+		for(auto i = scores.begin(); i != scores.end(); i++){
 			std::cout << "###########################\n";
-			std::cout << "score: " << scores.at(i) <<  "\n\n";
-			flightComps.at(i).print();
+			std::cout << "score: " << i->first <<  "\n\n";
+			i->second.print();
 		}
 
 	}
